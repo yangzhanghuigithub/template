@@ -20,8 +20,8 @@
             </transition-group>
           </draggable>
           <FormItem>
-            <Button type="primary" @click="handleSubmit()">Submit</Button>
-            <Button type="ghost" @click="handleReset()" style="margin-left: 8px">Reset</Button>
+            <Button type="primary" @click="handleSubmit()">预览</Button>
+            <Button type="ghost" @click="handleReset()" style="margin-left: 8px">重置</Button>
           </FormItem>
         </Form>
       </i-col>
@@ -124,7 +124,7 @@ export default {
       sortable_item: [],
       showModal: false,
       // 深拷贝对象，防止默认空对象被更改
-      // 颜色选择器bug，对象下color不更新      
+      // 颜色选择器bug，对象下color不更新
       modalFormData: {
         color: '',
         loading: false
