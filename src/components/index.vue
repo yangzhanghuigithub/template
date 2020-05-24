@@ -12,7 +12,7 @@
       </i-col>
       <i-col span="12" class="sortable_item">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
-          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>
+<!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
           <draggable :list="sortable_item" :options="dragOptions2">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <renders @handleRemoveEle="removeEle" @handleConfEle="confEle" @changeVisibility="changeVisibility" v-for="(element,index) in sortable_item" :key="index" :index="index" :ele="element.ele" :obj="element.obj || {}" :data="formData" @handleChangeVal="val => handleChangeVal(val,element)" :sortableItem="sortable_item" :config-icon="true">
@@ -62,6 +62,10 @@
           </FormItem>
           <FormItem label="最大限制：" v-if="typeof modalFormData.maxSize != 'undefined'">
             <InputNumber :formatter="value => `${value}kb`" :parser="value => value.replace('kb', '')" v-model="modalFormData.maxSize" placeholder="请输入上传文件最大限制">
+            </InputNumber>
+          </FormItem>
+          <FormItem label="左边距：" v-if="typeof modalFormData.marginLeft != 'undefined'">
+            <InputNumber :formatter="value => `${value}px`" :parser="value => value.replace('px', '')" v-model="modalFormData.marginLeft" placeholder="请输入标签左边距">
             </InputNumber>
           </FormItem>
           <FormItem label="上边距：" v-if="typeof modalFormData.marginTop != 'undefined'">
@@ -136,9 +140,13 @@ export default {
   methods: {
     // 克隆表单提交事件
     handleSubmit() {
-      localStorage.setItem('template_form', JSON.stringify(this.sortable_item.filter(v => {
-        return !!v.obj.name
-      })));
+      localStorage.setItem('template_form', JSON.stringify(this.sortable_item
+        // .filter(
+        //   v => {
+        //     return !!v.obj.name
+        //   }
+        // )
+      ));
       this.$router.push('/render');
     },
     // 清空克隆表单
