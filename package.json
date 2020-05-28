@@ -12,9 +12,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cascader-multi": "^2.0.1",
+    "element-ui": "^2.13.2",
     "iview": "^2.12.0",
     "iview-area": "^1.5.17",
+    "lodash": "^4.17.15",
     "moment": "^2.22.0",
+    "qs": "^6.9.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.16.0",
