@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import iview from 'iview';
 import 'iview/dist/styles/iview.css'
 import cascaderMulti from 'cascader-multi';
@@ -24,6 +25,7 @@ Vue.prototype.$http = axios;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
