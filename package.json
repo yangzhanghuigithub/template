@@ -15,10 +15,13 @@
     "element-ui": "^2.13.2",
     "iview": "^2.12.0",
     "iview-area": "^1.5.17",
+    "js-base64": "^2.5.2",
+    "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
     "moment": "^2.22.0",
     "qs": "^6.9.4",
     "vue": "^2.5.2",
+    "vue-cookies": "^1.7.0",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.16.0",
     "vuex": "^3.4.0"
