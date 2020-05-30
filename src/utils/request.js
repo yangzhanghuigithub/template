@@ -15,7 +15,7 @@ const service = axios.create({
 service.interceptors.request.use(config => {
   config.data = config.params
   config.headers['Content-Type'] = 'application/json'
-  if (store.getters.token) {
+  if (getToken()) {
     config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   }
   return config

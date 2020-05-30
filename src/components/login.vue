@@ -12,6 +12,9 @@
 </template>
 
 <script>
+
+  import {setToken} from '../utils/auth'
+
     export default {
         name: "login",
         data() {
@@ -28,7 +31,8 @@
           },
           toLogin(){
             this.$api.login(this.user).then((data) => {
-              this.$auth.setToken(data.resultData);
+              setToken(data.resultData)
+              store.set()
             });
           }
         }
