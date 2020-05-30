@@ -33,15 +33,15 @@ service.interceptors.response.use(
   * code为非200是抛错 可结合自己业务进行修改
   */
     const res = response.data
-    if (res.code !== 200) {
+    if (res.resultCode !== '200') {
       Message({
-        message: res.message,
+        message: res.resultDesc,
         type: 'error',
         duration: 3 * 1000
       })
 
       // 401:未登录;
-      if (res.code === 401) {
+      if (res.resultCode === 401) {
         MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
@@ -54,6 +54,11 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
+      Message({
+        message: res.resultDesc,
+        type: 'success',
+        duration: 3 * 1000
+      })
       return response.data
     }
   },
