@@ -7,3 +7,11 @@ export function login(params) {
     params: request.adornParams(params)
   })
 }
+
+export function getUser(params) {
+  return request({
+    url: '/base/test/getUser',
+    method: 'get',
+    params: request.adornParams(params)
+  })
+}

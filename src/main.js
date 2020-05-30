@@ -6,6 +6,7 @@ import App from './App';
 import iview from 'iview';
 import store from './store';
 import router from './router';
+import auth from './utils';
 import iviewArea from 'iview-area';
 import ElementUI from 'element-ui';
 import 'iview/dist/styles/iview.css';
@@ -24,6 +25,7 @@ Vue.config.productionTip = false
 
 // axios.defaults.baseURL = '/apis';
 Vue.prototype.$http = axios;
+Vue.prototype.$auth = auth;
 Vue.prototype.$api = api;
 
 /* eslint-disable no-new */

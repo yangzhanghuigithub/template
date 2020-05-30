@@ -27,8 +27,9 @@
             this.$forceUpdate();
           },
           toLogin(){
-            var a = this.$api.login(this.user);
-            console.log(a)
+            this.$api.login(this.user).then((data) => {
+              this.$auth.setToken(data.resultData);
+            });
           }
         }
     }
