@@ -7,13 +7,13 @@
 <!--      <i-input :value.sync="password" placeholder="请输入密码" style="width: 300px;margin-top: 30px"></i-input>-->
       <i-button type="success" style="width: 300px;margin-top: 30px" @click="toLogin()" long>登录</i-button>
       <i-button type="success" style="width: 300px;margin-top: 30px" @click="toIndex()" long>去拖拽</i-button>
+      <i-button type="success" style="width: 300px;margin-top: 30px" @click="removeToken()" long>removeToken</i-button>
+      <i-button type="success" style="width: 300px;margin-top: 30px" @click="getUser()" long>getUser</i-button>
     </div>
   </div>
 </template>
 
 <script>
-
-  import {setToken} from '../utils/auth'
 
     export default {
         name: "login",
@@ -31,9 +31,17 @@
           },
           toLogin(){
             this.$api.login(this.user).then((data) => {
-              setToken(data.resultData)
+             this.$auth.setToken(data.resultData)
               store.set()
             });
+          },
+          removeToken(){
+            this.$auth.removeToken()
+          },
+          getUser(){
+            this.$api.getUser().then((data) => {
+              console.log(data.resultData)
+            })
           }
         }
     }

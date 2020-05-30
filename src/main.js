@@ -4,6 +4,7 @@ import Vue from 'vue';
 import api from './api';
 import App from './App';
 import iview from 'iview';
+import auth from './utils'
 import store from './store';
 import router from './router';
 import iviewArea from 'iview-area';
@@ -24,6 +25,7 @@ Vue.config.productionTip = false
 
 // axios.defaults.baseURL = '/apis';
 Vue.prototype.$http = axios;
+Vue.prototype.$auth = auth;
 Vue.prototype.$api = api;
 
 /* eslint-disable no-new */
