@@ -11,7 +11,7 @@ export function login(params) {
 export function getUser(params) {
   return request({
     url: '/base/test/getUser',
-    method: 'get',
-    params: request.adornParams(params)
+    method: 'GET',
+    params: request.adornData(params)
   })
 }

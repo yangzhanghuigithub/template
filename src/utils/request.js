@@ -102,7 +102,7 @@ service.adornParams = (params = {}, openDefultParams = true) => {
  *  json: 'application/json; charset=utf-8'
  *  form: 'application/x-www-form-urlencoded; charset=utf-8'
  */
-service.adornData = (data = {}, openDefultdata = true, contentType = 'json') => {
+service.adornData = (data = {}, openDefultdata = true, contentType = 'text') => {
   var defaults = {
     't': new Date().getTime()
   }
