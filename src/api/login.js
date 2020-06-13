@@ -15,3 +15,11 @@ export function getUser(params) {
     params: request.adornData(params)
   })
 }
+
+export function getMenu(params) {
+  return request({
+    url: '/base/menu/getMenu',
+    method: 'GET',
+    params: request.adornData(params)
+  })
+}

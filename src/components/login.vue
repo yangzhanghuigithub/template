@@ -31,7 +31,7 @@
           },
           toLogin(){
             this.$api.login(this.user).then((data) => {
-             this.$auth.setToken(data.resultData)
+              this.$auth.setToken(data.resultData)
             });
           },
           removeToken(){
