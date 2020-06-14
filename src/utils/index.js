@@ -1,9 +1,12 @@
-import {getToken} from './auth'
-import {setToken} from './auth'
-import {removeToken} from './auth'
+import {getToken, setToken, removeToken} from './auth'
+import {isEmail, isMobile, isPhone, isURL} from './validate'
 
 export default {
   getToken: getToken,
   setToken: setToken,
-  removeToken: removeToken
+  removeToken: removeToken,
+  isEmail: isEmail,
+  isMobile: isMobile,
+  isPhone: isPhone,
+  isURL: isURL
 }

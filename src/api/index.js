@@ -1,7 +1,9 @@
-import {login} from './login'
-import {getUser} from './login'
+import {login, getUser, getMenu, logout, getInfo} from './login'
 
 export default {
   login: login,
-  getUser: getUser
+  getUser: getUser,
+  getMenu: getMenu,
+  getInfo: getInfo,
+  logout: logout
 }

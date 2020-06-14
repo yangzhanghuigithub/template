@@ -8,9 +8,31 @@ export function login(params) {
   })
 }
 
+export function getInfo() {
+  return request({
+    url: '/admin/info',
+    method: 'get',
+  })
+}
+
+export function logout() {
+  return request({
+    url: '/admin/logout',
+    method: 'post'
+  })
+}
+
 export function getUser(params) {
   return request({
     url: '/base/test/getUser',
+    method: 'GET',
+    params: request.adornData(params)
+  })
+}
+
+export function getMenu(params) {
+  return request({
+    url: '/base/menu/getMenu',
     method: 'GET',
     params: request.adornData(params)
   })
