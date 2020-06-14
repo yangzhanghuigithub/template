@@ -4,6 +4,7 @@ import login from '../components/login'
 import index from '../components/index'
 import render from '../components/render'
 import preview from '../components/preview'
+import Layout from '../views/layout/Layout'
 
 Vue.use(Router)
 
