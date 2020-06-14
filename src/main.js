@@ -26,27 +26,27 @@ Vue.prototype.$http = axios;
 Vue.prototype.$auth = auth;
 Vue.prototype.$api = api;
 
-router.beforeEach((to, from, next)=> {
-    if (to.name == 'login') {
-
-      initMenu(router, store);
-      next();
-      return;
-    }
-    var name = store.state.user.name;
-    if (name == '未登录') {
-      if (to.meta.requireAuth || to.name == null) {
-        next({path: '/', query: {redirect: to.path}})
-      } else {
-        next();
-      }
-    } else {
-      initMenu(router, store);
-      if(to.path=='/chat')
-      next();
-    }
-  }
-)
+// router.beforeEach((to, from, next)=> {
+//     if (to.name == 'login') {
+//
+//       initMenu(router, store);
+//       next();
+//       return;
+//     }
+//     var name = store.state.user.name;
+//     if (name == '未登录') {
+//       if (to.meta.requireAuth || to.name == null) {
+//         next({path: '/', query: {redirect: to.path}})
+//       } else {
+//         next();
+//       }
+//     } else {
+//       initMenu(router, store);
+//       if(to.path=='/chat')
+//       next();
+//     }
+//   }
+// )
 
 /* eslint-disable no-new */
 new Vue({
