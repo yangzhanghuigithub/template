@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '@/components/login'
-import index from '@/components/index'
-import render from '@/components/render'
-import preview from '@/components/preview'
+import login from '../components/login'
+import index from '../components/index'
+import render from '../components/render'
+import preview from '../components/preview'
 
 Vue.use(Router)
 
@@ -26,3 +26,9 @@ export default new Router({
     component: preview
   }]
 })
+
+export const constantRouterMap = [
+  {path: '/login', name: 'login', component: login}
+]
+
+export const asyncRouterMap = []
