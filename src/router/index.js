@@ -29,7 +29,18 @@ export default new Router({
 })
 
 export const constantRouterMap = [
-  {path: '/login', name: 'login', component: login}
+  {path: '/login', component: () => login, hidden: true},
+  {path: '/404', component: () => import('../views/404'), hidden: true},
+  {
+    path: '',
+    component: Layout,
+    redirect: '/home',
+    children: [{
+      path: 'home',
+      name: 'home',
+      component: () => import('../views/home/index'),
+      meta: {title: '首页', icon: 'home'}
+    }]}
 ]
 
 export const asyncRouterMap = []
