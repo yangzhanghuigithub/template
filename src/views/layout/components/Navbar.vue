@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb></breadcrumb>
+    <span style="display: flex"><i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i><breadcrumb></breadcrumb></span>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img class="user-avatar" :src="avatar">
