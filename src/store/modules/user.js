@@ -45,14 +45,14 @@ const user = {
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo().then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
+          const data = response.resultData
+          // if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+            commit('SET_ROLES', [1111])
+          // } else {
+          //   reject('getInfo: roles must be a non-null array !')
+          // }
           commit('SET_NAME', data.username)
-          commit('SET_AVATAR', data.icon)
+          commit('SET_AVATAR', '')
           resolve(response)
         }).catch(error => {
           reject(error)

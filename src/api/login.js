@@ -10,14 +10,14 @@ export function login(params) {
 
 export function getInfo() {
   return request({
-    url: '/admin/info',
+    url: '/base/sysMenu/getMenus',
     method: 'get',
   })
 }
 
 export function logout() {
   return request({
-    url: '/admin/logout',
+    url: 'base/admin/logout',
     method: 'post'
   })
 }
