@@ -26,20 +26,20 @@ export const constantRouterMap = [
     name: 'preview',
     component: preview
   }, {
-    path: '/',
+    path: '',
     component: Layout,
     redirect: '/home',
     children: [{
       path: 'home',
       name: 'home',
-      component: () => import('../views/home/index'),
-      meta: {title: '首页', icon: 'home'}
+      component: () => import('../components/index'),
+      meta: {title: '首页', icon: 'iconhome'}
     },
-      {
-        path: '/404',
-        component: () => import('../views/404'),
-        hidden: true
-      }]
+    {
+      path: '/404',
+      component: () => import('../views/404'),
+      hidden: true
+    }]
   }
 ]
 
@@ -49,7 +49,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/pms/product',
     name: 'pms',
-    meta: {title: '商品', icon: 'product'},
+    meta: {title: '商品', icon: 'iconhome'},
     children: [{
       path: 'product',
       name: 'product',

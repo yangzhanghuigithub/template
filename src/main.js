@@ -26,7 +26,6 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios;
 Vue.prototype.$auth = auth;
 Vue.prototype.$api = api;
-console.log(auth.getToken)
 
 /* eslint-disable no-new */
 new Vue({
