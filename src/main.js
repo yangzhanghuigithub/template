@@ -11,7 +11,9 @@ import 'iview/dist/styles/iview.css';
 import '@/element-ui-theme/style.css'
 import cascaderMulti from 'cascader-multi';
 import custom_form from './components/custom_form';
+import '@/styles/index.scss'
 import './permission'
+import './icons'
 import axios from 'axios';
 
 Vue.use(iview);
