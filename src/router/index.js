@@ -49,7 +49,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/pms/product',
     name: 'pms',
-    meta: {title: '商品', icon: 'iconhome'},
+    meta: {title: '商品', icon: 'product'},
     children: [{
       path: 'product',
       name: 'product',
