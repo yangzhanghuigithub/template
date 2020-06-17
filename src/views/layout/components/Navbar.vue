@@ -1,11 +1,12 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <span style="display: flex"><i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i><breadcrumb></breadcrumb></span>
-    <el-dropdown class="avatar-container" trigger="click">
+    <span style="display: flex">
+      <i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i>
+      <breadcrumb></breadcrumb>
+      <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img class="user-avatar" :src="avatar">
-        <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
@@ -18,6 +19,7 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+    </span>
   </el-menu>
 </template>
 
