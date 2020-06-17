@@ -39,7 +39,7 @@
           window.sessionStorage.setItem("user", data.resultData)
           this.$router.push("/")
           Message({
-            message: data.resultData.resultDesc,
+            message: data.resultDesc,
             type: 'success',
             duration: 3 * 1000
           })
