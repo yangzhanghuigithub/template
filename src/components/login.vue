@@ -8,14 +8,13 @@
       <!--      <i-input icon :value.sync="username" placeholder="请输入用户名" style="width: 300px"></i-input>-->
       <!--      <i-input :value.sync="password" placeholder="请输入密码" style="width: 300px;margin-top: 30px"></i-input>-->
       <i-button type="success" style="width: 300px;margin-top: 30px" @click="toLogin()" long>登录</i-button>
-      <i-button type="success" style="width: 300px;margin-top: 30px" @click="toIndex()" long>去拖拽</i-button>
-      <i-button type="success" style="width: 300px;margin-top: 30px" @click="removeToken()" long>removeToken</i-button>
-      <i-button type="success" style="width: 300px;margin-top: 30px" @click="getUser()" long>getUser</i-button>
     </div>
   </div>
 </template>
 
 <script>
+
+  import {Message} from "element-ui";
 
   export default {
     name: "login",
@@ -39,6 +38,11 @@
           this.$auth.setToken(data.resultData.userToken)
           window.sessionStorage.setItem("user", data.resultData)
           this.$router.push("/")
+          Message({
+            message: data.resultData.resultDesc,
+            type: 'success',
+            duration: 3 * 1000
+          })
         });
       },
       removeToken() {
@@ -59,5 +63,8 @@
     flex-direction: column;
     align-items: flex-end;
     margin-right: 30px;
+  }
+  .page {
+    margin-top: 100px;
   }
 </style>
