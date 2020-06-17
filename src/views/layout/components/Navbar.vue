@@ -23,15 +23,15 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconhome" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconliebiao2" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconlingdang" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconhuihua" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 30px;"></i>
         </span>
       </span>
@@ -69,6 +69,10 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .icon-box :focus {
+    color: red;
+  }
+
   .navbar {
     height: 50px;
     line-height: 50px;
@@ -93,7 +97,6 @@
 
       .avatar-wrapper {
         cursor: pointer;
-        margin-top: 5px;
         position: relative;
 
         .user-avatar {
