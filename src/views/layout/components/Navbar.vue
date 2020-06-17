@@ -1,26 +1,41 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <span style="display: flex">
-      <i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i>
-      <breadcrumb></breadcrumb>
-<!--      <i class="iconfont iconhome" style="color: cadetblue;font-size: 30px;"></i>-->
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img class="user-avatar" :src="avatar">
-        </div>
-        <el-dropdown-menu class="user-dropdown" slot="dropdown">
-          <router-link class="inlineBlock" to="/">
-            <el-dropdown-item>
-              首页
-            </el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
-            <span @click="logout" style="display:block;">退出</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </span>
+    <div style="display: flex">
+      <span style="display: flex;flex-direction: row; justify-content: space-between;width: 100%;">
+        <span style="display: flex">
+          <i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i>
+          <breadcrumb></breadcrumb>
+        </span>
+        <span style="margin-right: 1%;width: 31%;display: flex; flex-direction: row;justify-content: space-around">
+          <el-dropdown class="icon-box avatar-container" trigger="click">
+            <div class="avatar-wrapper">
+              <img class="user-avatar" :src="avatar">
+            </div>
+            <el-dropdown-menu class="user-dropdown" slot="dropdown">
+              <router-link class="inlineBlock" to="/">
+                <el-dropdown-item>
+                  首页
+                </el-dropdown-item>
+              </router-link>
+              <el-dropdown-item divided>
+                <span @click="logout" style="display:block;">退出</span>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconhome"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconliebiao2"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconlingdang"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconhuihua"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box-shut iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 25px;"></i>
+        </span>
+      </span>
+    </div>
   </el-menu>
 </template>
 
@@ -54,6 +69,24 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .icon-box{
+    color: cadetblue;
+    font-size: 25px;
+  }
+  .icon-box:hover {
+    cursor: pointer;
+    color: greenyellow !important;
+  }
+  .icon-box-shut:hover{
+    cursor: pointer;
+    color: red !important;
+  }
+
+  .icontubiaozhizuo- {
+    color: gray;
+    font-size: 25px;
+  }
+
   .navbar {
     height: 50px;
     line-height: 50px;
@@ -75,13 +108,9 @@
 
     .avatar-container {
       height: 50px;
-      display: inline-block;
-      position: absolute;
-      right: 35px;
 
       .avatar-wrapper {
         cursor: pointer;
-        margin-top: 5px;
         position: relative;
 
         .user-avatar {
