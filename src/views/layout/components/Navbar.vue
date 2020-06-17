@@ -8,15 +8,6 @@
           <breadcrumb></breadcrumb>
         </span>
         <span style="margin-right: 1%;width: 31%;display: flex; flex-direction: row;justify-content: space-around">
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconhome" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconliebiao2" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconlingdang" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconhuihua" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <el-dropdown class="icon-box avatar-container" trigger="click">
             <div class="avatar-wrapper">
               <img class="user-avatar" :src="avatar">
@@ -32,7 +23,15 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <i class="icon-box iconfont icontubiaozhizuo-" style="gray: cadetblue;font-size: 30px;"></i>
+          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="icon-box iconfont iconhome" style="color: cadetblue;font-size: 30px;"></i>
+          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="icon-box iconfont iconliebiao2" style="color: cadetblue;font-size: 30px;"></i>
+          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="icon-box iconfont iconlingdang" style="color: cadetblue;font-size: 30px;"></i>
+          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
+          <i class="icon-box iconfont iconhuihua" style="color: cadetblue;font-size: 30px;"></i>
+          <i class="icon-box iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
           <i class="icon-box iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 30px;"></i>
         </span>
       </span>
