@@ -1,8 +1,8 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <span style="display: flex">
-      <span style="display: flex;flex-direction: row; justify-content: space-between;width: 100%">
+    <div style="display: flex">
+      <span style="display: flex;flex-direction: row; justify-content: space-between;width: 100%;">
         <span style="display: flex">
           <i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i>
           <breadcrumb></breadcrumb>
@@ -23,19 +23,19 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconhome" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconliebiao2" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconlingdang" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconhuihua" style="color: cadetblue;font-size: 30px;"></i>
-          <i class="iconfont icontubiaozhizuo-" style="color: gray;font-size: 30px;"></i>
-          <i class="icon-box iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 30px;"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconhome"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconliebiao2"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconlingdang"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box iconfont iconhuihua"></i>
+          <i class="iconfont icontubiaozhizuo-"></i>
+          <i class="icon-box-shut iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 25px;"></i>
         </span>
       </span>
-    </span>
+    </div>
   </el-menu>
 </template>
 
@@ -69,8 +69,22 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .icon-box :focus {
-    color: red;
+  .icon-box{
+    color: cadetblue;
+    font-size: 25px;
+  }
+  .icon-box:hover {
+    cursor: pointer;
+    color: greenyellow !important;
+  }
+  .icon-box-shut:hover{
+    cursor: pointer;
+    color: red !important;
+  }
+
+  .icontubiaozhizuo- {
+    color: gray;
+    font-size: 25px;
   }
 
   .navbar {
