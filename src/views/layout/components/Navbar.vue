@@ -7,8 +7,8 @@
           <span style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</span>
           <breadcrumb></breadcrumb>
         </span>
-        <span style="margin-right: 1%;width: 31%;display: flex; flex-direction: row;justify-content: space-around">
-          <el-dropdown class="icon-box avatar-container" trigger="click">
+        <span style="margin-right: 1%;width: 40%;display: flex; flex-direction: row;justify-content: space-around">
+          <el-dropdown class="avatar-container" style="margin-top: 5px" trigger="click">
             <div class="avatar-wrapper">
               <img class="user-avatar" :src="avatar">
             </div>
@@ -23,21 +23,19 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <span class="name-box"><span>{{username}}</span></span>
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconhome"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconliebiao2"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
-          <i class="icon-box iconfont iconlingdang">
-            <i class="iconfont icontubiaozhizuo-1"
-               style="font-size: 35px;color: red;margin-left: -25px;position: absolute;margin-top: -8px;">
-              <span style="font-size: 12px;position: absolute;color: white;margin-left: -20px">3</span>
-            </i>
-          </i>
+          <el-badge value="9+" class="item" style="margin-top: 20px">
+            <i class="icon-box iconfont iconlingdang"></i>
+          </el-badge>
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconhuihua"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
-          <i class="icon-box-shut iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 25px;"></i>
+          <i class="icon-box-shut iconfont iconguanbi" @click="logout" style="color: darkred;font-size: 25px;margin-top: 20px"></i>
         </span>
       </span>
     </div>
@@ -50,6 +48,11 @@
   import Hamburger from '@/components/Hamburger'
 
   export default {
+    data() {
+      return {
+        username: this.$store.getters.name
+      }
+    },
     components: {
       Breadcrumb,
       Hamburger
@@ -74,9 +77,17 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .icon-box{
+  .name-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    color: darkgreen;
+  }
+  .icon-box {
     color: cadetblue;
     font-size: 26px;
+    margin-top: 20px;
   }
   .icon-box:hover {
     cursor: pointer;
@@ -89,12 +100,13 @@
 
   .icontubiaozhizuo- {
     color: gray;
-    font-size: 25px;
+    font-size: 30px;
+    margin-top: 20px;
   }
 
   .navbar {
     height: 50px;
-    line-height: 50px;
+    line-height: 18px;
     border-radius: 0px !important;
 
     .hamburger-container {

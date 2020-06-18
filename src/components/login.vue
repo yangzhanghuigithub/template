@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div class="login-box">
+      <div style="font-size: 20px;margin-right: 214px;margin-bottom: 30px">用户登录:</div>
       <el-input placeholder="请输入用户名" prefix-icon="el-icon-user" @input="change($event)" v-model="user.username"
                 style="width: 300px;"></el-input>
       <el-input placeholder="请输入密码" prefix-icon="el-icon-user-solid" @input="change($event)" show-password
@@ -8,6 +9,11 @@
       <!--      <i-input icon :value.sync="username" placeholder="请输入用户名" style="width: 300px"></i-input>-->
       <!--      <i-input :value.sync="password" placeholder="请输入密码" style="width: 300px;margin-top: 30px"></i-input>-->
       <i-button type="success" style="width: 300px;margin-top: 30px" @click="toLogin()" long>登录</i-button>
+      <span style="display: flex;flex-direction: row;width: 24%;justify-content: space-around;margin-top: 30px">
+        <span style="line-height: 70px;font-size: 18px">第三方登录:</span>
+        <i style="color: skyblue;font-size: 45px" class="third-icon iconfont iconlogo-qq"></i>
+        <i style="color: green;font-size: 40px" class="third-icon iconfont iconweixin"></i>
+      </span>
     </div>
   </div>
 </template>
