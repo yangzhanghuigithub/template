@@ -76,7 +76,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   .icon-box{
     color: cadetblue;
-    font-size: 28px;
+    font-size: 26px;
   }
   .icon-box:hover {
     cursor: pointer;
