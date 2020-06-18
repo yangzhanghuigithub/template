@@ -4,7 +4,7 @@
     <div style="display: flex">
       <span style="display: flex;flex-direction: row; justify-content: space-between;width: 100%;">
         <span style="display: flex">
-          <i style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</i>
+          <span style="height: 50px;line-height: 50px;font-size: 24px;font-weight: bold;margin-right: 10px">疾病队列仓库</span>
           <breadcrumb></breadcrumb>
         </span>
         <span style="margin-right: 1%;width: 31%;display: flex; flex-direction: row;justify-content: space-around">
