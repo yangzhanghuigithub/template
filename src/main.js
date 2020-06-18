@@ -8,6 +8,7 @@ import router from './router';
 import iviewArea from 'iview-area';
 import ElementUI from 'element-ui';
 import 'iview/dist/styles/iview.css';
+import '@/static/iconfont/iconfont.css';
 import '@/element-ui-theme/style.css'
 import cascaderMulti from 'cascader-multi';
 import custom_form from './components/custom_form';

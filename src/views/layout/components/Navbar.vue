@@ -28,7 +28,12 @@
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconliebiao2"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
-          <i class="icon-box iconfont iconlingdang"></i>
+          <i class="icon-box iconfont iconlingdang">
+            <i class="iconfont icontubiaozhizuo-1"
+               style="font-size: 35px;color: red;margin-left: -25px;position: absolute;margin-top: -8px;">
+              <span style="font-size: 12px;position: absolute;color: white;margin-left: -20px">3</span>
+            </i>
+          </i>
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconhuihua"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
@@ -71,7 +76,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   .icon-box{
     color: cadetblue;
-    font-size: 25px;
+    font-size: 28px;
   }
   .icon-box:hover {
     cursor: pointer;

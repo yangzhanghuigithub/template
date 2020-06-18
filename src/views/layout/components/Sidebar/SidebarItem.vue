@@ -60,7 +60,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  @import url("../../../../static/iconfont/iconfont.css");
-</style>
