@@ -23,7 +23,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span class="name-box"><span>{{username}}</span></span>
+          <span class="name-box"><span>{{name}}</span></span>
           <i class="iconfont icontubiaozhizuo-"></i>
           <i class="icon-box iconfont iconhome"></i>
           <i class="iconfont icontubiaozhizuo-"></i>
@@ -48,11 +48,6 @@
   import Hamburger from '@/components/Hamburger'
 
   export default {
-    data() {
-      return {
-        username: this.$store.getters.name
-      }
-    },
     components: {
       Breadcrumb,
       Hamburger
@@ -60,7 +55,8 @@
     computed: {
       ...mapGetters([
         'sidebar',
-        'avatar'
+        'avatar',
+        'name'
       ])
     },
     methods: {
