@@ -1,16 +1,26 @@
 <template>
   <div class="container">
     <i-row>
-      <i-col span="12" class="sortable_container">
+      <i-col span="6" class="sortable_container">
         <Form :label-width="100" class="b-a">
-          <draggable :clone="cloneData" :list="form_list" :options="dragOptions1">
-            <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
-              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>
+          <span class="compo">题目元件</span>
+          <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove">
+            <transition-group class="form-list-group form-first-group" type="transition" :name="'flip-list'" tag="div">
+<!--              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>-->
+                <span class="choose-box" v-for="(ele, ind) in comp_list" :key="ind">
+                  <i class="choose-icon" :class="ele.icon"></i>{{ele.title}}</span>
+            </transition-group>
+          </draggable>
+          <div class="search-box"><i class="iconfont iconchaxun" style="font-size: 23px"></i><input class="search-input"></input></div>
+          <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3">
+            <transition-group class="form-list-group form-first-group form-second-group" type="transition" :name="'flip-list'" tag="div">
+              <span class="subj-box" v-for="(ele, ind) in subj_list" :key="ind">
+                  <i class="subj-icon iconfont iconliebiao2">{{ele.title}}</i><i class="iconfont iconlajitongshanchu"></i></span>
             </transition-group>
           </draggable>
         </Form>
       </i-col>
-      <i-col span="12" class="sortable_item">
+      <i-col span="18" class="sortable_item" style="margin-left: -1px;">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
 <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
           <draggable :list="sortable_item" :options="dragOptions2">
@@ -125,6 +135,28 @@ export default {
   data() {
     return {
       form_list: form_list,
+      comp_list:[
+        {icon: 'iconfont iconyonghuqun',type: 0, title: '标题'},
+        {icon: 'iconfont iconlogo-qq',type: 1, title: '横线'},
+        {icon: 'iconfont iconzijinbudaozhangdaoru',type: 2, title: '标签'},
+        {icon: 'iconfont iconfabu',type: 3, title: '输入框'},
+        {icon: 'iconfont icon231yonghu_shenfen2',type: 4, title: '下拉框'},
+        {icon: 'iconfont iconzhishiku',type: 5, title: '单选框'},
+        {icon: 'iconfont iconsheji',type: 6, title: '多选框'},
+        {icon: 'iconfont iconsheji1',type: 7, title: '时间'},
+        {icon: 'iconfont iconliebiao3',type: 8, title: '级联'},
+        {icon: 'iconfont iconzidianguanli',type: 9, title: '详细地址'},
+        {icon: 'iconfont icontansuo',type: 10, title: '上传控件'},
+        {icon: 'iconfont icontongji',type: 11, title:'文本域'}
+        ],
+      subj_list:[
+        {type: 3, ind: 0, title: '姓名'},
+        {type: 5, ind: 1, title: '性别'},
+        {type: 7, ind: 2, title: '出生日期'},
+        {type: 3, ind: 3, title: '民族'},
+        {type: 3, ind: 4, title: '籍贯'},
+        {type: 5, ind: 5, title: '婚姻'}
+      ],
       sortable_item: [],
       showModal: false,
       // 深拷贝对象，防止默认空对象被更改
@@ -138,6 +170,10 @@ export default {
     };
   },
   methods: {
+    checkMove(evt){
+      console.log(evt.draggedContext)
+      console.log(evt.relatedContext)
+    },
     // 克隆表单提交事件
     handleSubmit() {
       localStorage.setItem('template_form', JSON.stringify(this.sortable_item
@@ -176,9 +212,9 @@ export default {
     // 克隆,深拷贝对象
     cloneData(original) {
       // 添加一个modal标题
-      original.obj.modalTitle = original.obj.label || "";
+      // original.obj.modalTitle = original.obj.label || "";
       // 深拷贝对象，防止默认空对象被更改
-      return JSON.parse(JSON.stringify(original));
+      return JSON.parse(JSON.stringify(this.form_list[original.type]));
     },
     // modal点击确定执行事件
     handleOk() {
@@ -280,6 +316,21 @@ export default {
         }
       };
     },
+    // 拖拽表单1
+    dragOptions3() {
+      return {
+        animation: 0,
+        ghostClass: "ghost",
+        // 分组
+        group: {
+          name: "shared",
+          pull: "clone",
+          revertClone: false
+        },
+        // 禁止拖动排序
+        sort: true
+      };
+    },
     // 被关联字段列表
     relationList() {
       // 只有type内三项可作为被关联字段
@@ -312,101 +363,158 @@ export default {
 };
 </script>
 <style>
-.inline {
-  display: inline-block;
-}
+  .search-box {
+    margin-left: 8%;
+    color: gray;
+  }
+  .search-input {
+    background:transparent;
+    border:none;
+    outline:medium;
+    border-bottom: 1px solid gray;
+    width: 78%;
+    margin-left: 4%;
+    margin-bottom: 6px;
+    font-size: 20px;
+  }
+  .subj-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    cursor: move;
+    border-bottom: 1px solid darkgray;
+  }
+  .subj-icon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .compo {
+    margin-left: 20px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .choose-icon {
+    margin-right: 6px;
+    font-size: 10px;
+  }
+  .form-first-group {
+    display: flex;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .form-second-group {
+    border-top: 1px solid darkgray;
+  }
+  .choose-box {
+    cursor: move;
+    width: 72px;
+    border: 1px solid lightslategray;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+  }
+  .inline {
+    display: inline-block;
+  }
 
-.m-l-lg {
-  margin-left: 30px
-}
+  .m-l-lg {
+    margin-left: 30px
+  }
 
-.wrapper {
-  padding: 15px
-}
+  .wrapper {
+    padding: 15px
+  }
 
-.inline-block {
-  display: inline-block;
-}
+  .inline-block {
+    display: inline-block;
+  }
 
-.padder-sm {
-  padding-right: 10px;
-  padding-left: 10px
-}
+  .padder-sm {
+    padding-right: 10px;
+    padding-left: 10px
+  }
 
-.b-a {
-  border: 1px solid #ccc;
-}
+  .b-a {
+    border: 1px solid #ccc;
+  }
 
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
+  .ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+  }
 
-.form-list-group {
-  min-height: 200px;
-  padding: 20px !important;
-}
+  .form-list-group {
+    min-height: 200px;
+    padding: 20px;
+  }
 
-/* 设置items下所有鼠标样式为 move */
+  /* 设置items下所有鼠标样式为 move */
 
-.items,
-.items * {
-  cursor: move;
-}
+  .items,
+  .items * {
+    cursor: move;
+  }
 
-/* 配置按钮默认位置 */
+  /* 配置按钮默认位置 */
 
-/* 例如P Hr Title按钮 */
+  /* 例如P Hr Title按钮 */
 
-.items .item-icon {
-  transition: all 2s ease;
-  position: absolute;
-  top: -18px;
-  right: 0px;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-}
+  .items .item-icon {
+    transition: all 2s ease;
+    position: absolute;
+    top: -18px;
+    right: 0px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
 
-/* form控件下配置按钮位置 */
+  /* form控件下配置按钮位置 */
 
-.ivu-form-item.items .item-icon {
-  top: -25px;
-}
+  .ivu-form-item.items .item-icon {
+    top: -25px;
+  }
 
-/* 配置按钮样式 */
+  /* 配置按钮样式 */
 
-.item-icon i {
-  cursor: pointer !important;
-  margin-right: 5px;
-}
+  .item-icon i {
+    cursor: pointer !important;
+    margin-right: 5px;
+  }
 
-.items:hover .item-icon {
-  transition: inherit;
-  opacity: 1;
-  max-height: 50px;
-}
+  .items:hover .item-icon {
+    transition: inherit;
+    opacity: 1;
+    max-height: 50px;
+  }
 
-/* 提交按钮下方无 margin-bottom */
+  /* 提交按钮下方无 margin-bottom */
 
-.form_content .ivu-form-item:last-child {
-  margin-bottom: 0;
-}
+  .form_content .ivu-form-item:last-child {
+    margin-bottom: 0;
+  }
 
 
-/* 表单校验选项样式 */
+  /* 表单校验选项样式 */
 
-.ivu-form-item-required .ivu-form-item-label:before {
-  content: '';
-}
+  .ivu-form-item-required .ivu-form-item-label:before {
+    content: '';
+  }
 
-.items.sortable-items-required .ivu-form-item-label:before {
-  content: '*';
-  display: inline-block;
-  margin-right: 4px;
-  line-height: 1;
-  font-family: SimSun;
-  font-size: 12px;
-  color: #ed3f14;
-}
+  .items.sortable-items-required .ivu-form-item-label:before {
+    content: '*';
+    display: inline-block;
+    margin-right: 4px;
+    line-height: 1;
+    font-family: SimSun;
+    font-size: 12px;
+    color: #ed3f14;
+  }
 </style>
