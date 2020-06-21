@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '../components/login'
-import index from '../components/index'
+import index from '../components/draggable'
 import render from '../components/render'
 import preview from '../components/preview'
 import Layout from '../views/layout/Layout'
@@ -13,11 +13,7 @@ export const constantRouterMap = [
     path: '/login',
     name: 'login',
     component: login
-  }, {
-    path: '/index',
-    name: 'index',
-    component: index
-  }, {
+  },{
     path: '/render',
     name: 'render',
     component: render
@@ -32,7 +28,7 @@ export const constantRouterMap = [
     children: [{
       path: 'home',
       name: 'home',
-      component: () => import('../components/index'),
+      component: () => import('../components/draggable'),
       meta: {title: '首页', icon: 'iconhome'}
     },
     {
