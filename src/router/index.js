@@ -5,6 +5,8 @@ import index from '../components/draggable'
 import render from '../components/render'
 import preview from '../components/preview'
 import Layout from '../views/layout/Layout'
+import projectList from '../views/project/projectList'
+import addProject from '../views/project/addProject'
 
 Vue.use(Router)
 
@@ -55,14 +57,14 @@ export const asyncRouterMap = [
       {
         path: 'addProduct',
         name: 'addProduct',
-        // component: () => import('@/views/pms/product/add'),
+        component: projectList,
         meta: {title: '添加商品', icon: 'product-add'}
       },
       {
-        path: 'updateProduct',
-        name: 'updateProduct',
-        // component: () => import('@/views/pms/product/update'),
-        meta: {title: '修改商品', icon: 'product-add'},
+        path: 'addProject',
+        name: 'addProject',
+        component: addProject,
+        meta: {title: '新增项目', icon: 'product-add'},
         hidden: true
       },
       {
