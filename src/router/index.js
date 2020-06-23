@@ -7,6 +7,7 @@ import preview from '../components/preview'
 import Layout from '../views/layout/Layout'
 import projectList from '../views/project/projectList'
 import addProject from '../views/project/addProject'
+import projectInfo from '../views/project/projectInfo'
 
 Vue.use(Router)
 
@@ -65,6 +66,13 @@ export const asyncRouterMap = [
         name: 'addProject',
         component: addProject,
         meta: {title: '新增项目', icon: 'product-add'},
+        hidden: true
+      },
+      {
+        path: 'projectInfo',
+        name: 'projectInfo',
+        component: projectInfo,
+        meta: {title: '项目首页', icon: 'product-add'},
         hidden: true
       },
       {

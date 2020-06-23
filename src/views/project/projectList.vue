@@ -40,7 +40,7 @@
             </span>
           </div>
           <div class="button-box">
-            <button>项目首页</button>
+            <button @click="toProjInfo">项目首页</button>
             <button>项目信息</button>
             <button>项目设计</button>
             <button>统计分析</button>
@@ -76,6 +76,9 @@
       }
     },
     methods: {
+      toProjInfo(){
+        this.$router.push("/pms/projectInfo")
+      },
       change(e) {
         this.$forceUpdate();
       },

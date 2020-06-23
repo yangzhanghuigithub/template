@@ -312,7 +312,7 @@ export default {
         ghostClass: "ghost",
         group: {
           // 只允许放置shared的控件,禁止pull
-          put: ["shared"]
+          put: ["shared", "library"]
         }
       };
     },
@@ -323,9 +323,9 @@ export default {
         ghostClass: "ghost",
         // 分组
         group: {
-          name: "shared",
-          pull: "clone",
-          revertClone: false
+          name: 'library',
+          // 只允许放置shared的控件,禁止pull
+          put: false
         },
         // 禁止拖动排序
         sort: true
