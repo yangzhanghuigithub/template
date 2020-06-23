@@ -324,6 +324,7 @@ export default {
         // 分组
         group: {
           name: 'library',
+          pull: "clone",
           // 只允许放置shared的控件,禁止pull
           put: false
         },
