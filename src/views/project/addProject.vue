@@ -211,6 +211,7 @@
           {icon: 'iconsheji', title: '项目设计', isActive: false},
           {icon: 'iconfabu1', title: '项目发布', isActive: false}
         ],
+        input: '',
         options: [],
         selectValue: [],
         fileList: [{

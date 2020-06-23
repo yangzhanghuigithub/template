@@ -1,5 +1,5 @@
 import {login, getUser, getMenu, logout, getInfo} from './login'
-import {projectList} from "./projiect";
+import {projectList, patientList} from "./projiect";
 
 export default {
   login: login,
@@ -7,5 +7,6 @@ export default {
   getMenu: getMenu,
   getInfo: getInfo,
   logout: logout,
-  projectList: projectList
+  projectList: projectList,
+  patientList: patientList
 }

@@ -72,7 +72,8 @@
       return {
         selectValue: [],
         options: [],
-        title: '我参与的'
+        title: '我参与的',
+        input: ''
       }
     },
     methods: {

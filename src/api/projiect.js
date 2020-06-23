@@ -7,3 +7,11 @@ export function projectList(params) {
     params: request.adornData(params)
   })
 }
+
+export function patientList(params) {
+  return request({
+    url: '/base/patient/getListPage',
+    method: 'GET',
+    params: request.adornParams(params)
+  })
+}
