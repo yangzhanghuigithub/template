@@ -32,14 +32,28 @@
               <i class="iconfont icon21 but-icon"></i>
               添加患者</el-button>
           </span>
+          <span>
+            <i-table width="100%" height="300" border :columns="columnList" :data="patientList"></i-table>
+          </span>
+          <div style="margin-top: 30px">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="[100, 200, 300, 400]"
+              :page-size="100"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="400">
+            </el-pagination>
+          </div>
         </div>
       </el-tab-pane>
       <el-tab-pane label="项目信息" name="second">配置管理</el-tab-pane>
       <el-tab-pane label="项目文件" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="成员管理" name="fourth">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="分组管理" name="fourth">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="项目设计" name="fourth">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="统计分析" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="分组管理" name="fifth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="项目设计" name="sixth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="统计分析" name="seven">定时任务补偿</el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -49,20 +63,51 @@
     name: "projectInfo",
     data() {
       return {
+        columnList: [
+          {title: '状态', key: 'state', width: 100, fixed: 'left'},
+          {title: '患者姓名', key: 'patientName', width: 100, fixed: 'left'},
+          {title: '联系方式', key: 'mobile', width: 130},
+          {title: '住院号', key: 'hospitalNum', width: 100},
+          {title: '性别', key: 'sex', width: 100},
+          {title: '出生日期', key: 'birthday', width: 100},
+          {title: '基线', key: 'action', width: 120, fixed: 'right',
+            render () {
+              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+            }
+          },
+          {title: '治疗过程', key: 'action', width: 130, fixed: 'right',
+            render () {
+              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+            }
+          },
+          {title: '治疗结局', key: 'action', width: 140, fixed: 'right',
+            render () {
+              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+            }
+          }
+        ],
         activeName: 'first',
         options: [{}],
         value: '',
         input: '',
         input2: '',
-        patientList: []
+        patientList: [],
+        currentPage: 1
       }
     },
     created() {
       this.$api.patientList({pageIndex: 1, pageSize: 10}).then((data) => {
-        console.log(data.resultDta);
+        this.patientList = data.resultData.records;
+        console.log(data.resultData)
       })
     },
     methods: {
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+      },
       handleClick(tab, event) {
         console.log(tab, event);
       }
@@ -85,5 +130,6 @@
     margin-left: 0px;
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
   }
 </style>

@@ -6,9 +6,7 @@
                 style="width: 300px;"></el-input>
       <el-input placeholder="请输入密码" prefix-icon="el-icon-user-solid" @input="change($event)" show-password
                 v-model="user.password" style="width: 300px;margin-top: 30px"></el-input>
-      <!--      <i-input icon :value.sync="username" placeholder="请输入用户名" style="width: 300px"></i-input>-->
-      <!--      <i-input :value.sync="password" placeholder="请输入密码" style="width: 300px;margin-top: 30px"></i-input>-->
-      <i-button type="success" style="width: 300px;margin-top: 30px" @click="toLogin()" long>登录</i-button>
+      <i-button type="success" style="width: 300px;margin-top: 30px" @click="toLogin()">登录</i-button>
       <span style="display: flex;flex-direction: row;width: 24%;justify-content: space-around;margin-top: 30px">
         <span style="line-height: 70px;font-size: 18px">第三方登录:</span>
         <i style="color: skyblue;font-size: 45px" class="third-icon iconfont iconlogo-qq"></i>
