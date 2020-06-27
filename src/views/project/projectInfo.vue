@@ -48,7 +48,54 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="项目信息" name="second">配置管理</el-tab-pane>
+      <el-tab-pane label="项目信息" name="second">
+        <div style="margin-top: 30px">
+          <span class="info-title">
+            <span class="info-title-head">项目信息</span>
+            <span>创建人：王医生</span>
+            <span>创建时间：2020-06-01</span>
+            <span>发布时间：2020-06-02</span>
+          </span>
+          <hr>
+          <span class="info-body-box">
+            <div>
+              <label>项目图标：</label>
+              <el-image
+                style="width: 100px; height: 100px; margin: 20px"
+                src="http://yzh:9080/lrhealth/u3201.png"
+                fit="fill"></el-image>
+            </div>
+            <div>
+              <label>项目名称：</label>
+              <span>多个肿瘤标记物水平与肺癌诊断及生存结局相关性分析</span>
+            </div>
+            <div>
+              <label>项目英文名：</label>
+              <span>无</span>
+            </div>
+            <div>
+              <label>研究机构：</label>
+              <span>北京大学第三医院</span>
+            </div>
+            <div>
+              <label>项目描述：</label>
+              <span>无</span>
+            </div>
+            <div>
+              <label>起止时间：</label>
+              <span>2020-01-01 至  2020-12-31</span>
+            </div>
+            <div>
+              <label>项目注册号：</label>
+              <span>无</span>
+            </div>
+            <div>
+              <label>伦理备案号：</label>
+              <span>无</span>
+            </div>
+          </span>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="项目文件" name="third">角色管理</el-tab-pane>
       <el-tab-pane label="成员管理" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="分组管理" name="fifth">定时任务补偿</el-tab-pane>
@@ -116,6 +163,22 @@
 </script>
 
 <style scoped>
+  .info-body-box div{
+    margin-top: 25px;
+    font-size: 14px;
+  }
+  .info-title-head{
+    font-weight: bold;
+    font-size: 20px !important;
+  }
+  .info-title span {
+    margin-right: 20px;
+    font-size: 14px;
+  }
+  label {
+    display: inline-block;
+    width: 10%;
+  }
   .but-icon {
     font-size: 12px !important;
   }
@@ -129,6 +192,7 @@
   .search-box {
     margin-left: 0px;
     display: flex;
+    margin-top: 30px;
     flex-direction: row;
     margin-bottom: 20px;
   }
