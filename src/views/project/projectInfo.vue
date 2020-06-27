@@ -33,7 +33,7 @@
               添加患者</el-button>
           </span>
           <span>
-            <i-table width="100%" height="300" border :columns="columnList" :data="patientList"></i-table>
+            <i-table width="100%" height="300" border :columns="patientColumns" :data="patientList"></i-table>
           </span>
           <div style="margin-top: 30px">
             <el-pagination
@@ -49,14 +49,14 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="项目信息" name="second">
-        <div style="margin-top: 30px">
+        <div class="pane-box">
           <span class="info-title">
             <span class="info-title-head">项目信息</span>
             <span>创建人：王医生</span>
             <span>创建时间：2020-06-01</span>
             <span>发布时间：2020-06-02</span>
           </span>
-          <hr>
+          <hr/>
           <span class="info-body-box">
             <div>
               <label>项目图标：</label>
@@ -96,7 +96,22 @@
           </span>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="项目文件" name="third">角色管理</el-tab-pane>
+      <el-tab-pane label="项目文件" name="third">
+        <div class="pane-box">
+          <span class="info-title">
+            <span class="info-title-head">我的项目文件</span>
+            <span>（30 M/500 M）</span>
+          </span>
+          <hr style="margin-bottom: 20px"/>
+          <div style="width: 80%">
+            <i-table border :content="self" :columns="fileColumns" :data="fileList"></i-table>
+          </div>
+          <span>
+            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21" style="font-size: 14px"></i>上传文件</el-button>
+            <span style="margin-left: 15px">注：单个上传文件大小限制为50M</span>
+          </span>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="成员管理" name="fourth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="分组管理" name="fifth">定时任务补偿</el-tab-pane>
       <el-tab-pane label="项目设计" name="sixth">定时任务补偿</el-tab-pane>
@@ -110,28 +125,143 @@
     name: "projectInfo",
     data() {
       return {
-        columnList: [
+        patientColumns: [
           {title: '状态', key: 'state', width: 100, fixed: 'left'},
           {title: '患者姓名', key: 'patientName', width: 100, fixed: 'left'},
-          {title: '联系方式', key: 'mobile', width: 130},
+          {title: '联系方式', key: 'mobile', width: 120},
           {title: '住院号', key: 'hospitalNum', width: 100},
           {title: '性别', key: 'sex', width: 100},
           {title: '出生日期', key: 'birthday', width: 100},
-          {title: '基线', key: 'action', width: 120, fixed: 'right',
-            render () {
-              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+          {title: '基线', key: 'action', width: 150, fixed: 'right',
+            render: (h, params) => {return h('div', {
+              style: {
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around'
+              }
+            },[
+              h('span', {
+                style: {
+                  width: '100%',
+                  textAlign: 'center'
+                },
+                on: {
+                  click: () => {
+
+                  }
+                }
+              }, '纳排条件'),
+              h('span', {
+                style: {
+                  width: '100%',
+                  textAlign: 'center'
+                },
+                on: {
+                  click: () => {
+
+                  }
+                }
+              }, '检验指标')
+            ]);
             }
           },
-          {title: '治疗过程', key: 'action', width: 130, fixed: 'right',
-            render () {
-              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+          {title: '治疗过程', key: 'action', width: 100, fixed: 'right',
+            render: (h, params) => {return h('div', {
+              style: {
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around'
+              }
+            },[
+              h('span', {
+                style: {
+                  width: '100%',
+                  textAlign: 'center'
+                },
+                on: {
+                  click: () => {
+
+                  }
+                }
+              }, '医嘱清单')
+            ]);
             }
           },
-          {title: '治疗结局', key: 'action', width: 140, fixed: 'right',
-            render () {
-              return `<i-button type="text" size="small">查看</i-button><i-button type="text" size="small">编辑</i-button>`;
+          {title: '治疗结局', key: 'action', width: 100, fixed: 'right',
+            render: (h, params) => {return h('div', {
+              style: {
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around'
+              }
+            },[
+              h('span', {
+                style: {
+                  width: '100%',
+                  textAlign: 'center'
+                },
+                on: {
+                  click: () => {
+
+                  }
+                }
+              }, '生存指标')
+            ]);
             }
           }
+        ],
+        fileColumns: [
+          {title: '文件名', key: 'name'},
+          {title: '大小', key: 'size'},
+          {title: '上传人', key: 'create'},
+          {title: '隐私', key: 'priv'},
+          {title: '操作', key: 'opera',
+            render: (h, params) => {
+              return h('div', {
+                style: {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-around'
+                }
+              },[
+                h('Icon', {
+                  props: {
+                    type: 'android-download'
+                  },
+                  style: {
+                    fontSize: '30px'
+                  },
+                  on: {
+                    click: () => {
+
+                    }
+                  }
+                }, ''),
+                h('Icon', {
+                  props: {
+                    type: 'android-delete'
+                  },
+                  style: {
+                    fontSize: '30px'
+                  },
+                  on: {
+                    click: () => {
+
+                    }
+                  }
+                }, '')
+              ]);
+            }
+          }
+        ],
+        fileList: [
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' },
+          {name: 'aaa', size: '1M',create: 'yzh', priv: '公开' }
         ],
         activeName: 'first',
         options: [{}],
@@ -145,7 +275,9 @@
     created() {
       this.$api.patientList({pageIndex: 1, pageSize: 10}).then((data) => {
         this.patientList = data.resultData.records;
-        console.log(data.resultData)
+        this.patientList.forEach(function(ele, ind){
+          ele.state = '已录入';
+        });
       })
     },
     methods: {
@@ -163,6 +295,9 @@
 </script>
 
 <style scoped>
+  .pane-box {
+    margin-top: 30px
+  }
   .info-body-box div{
     margin-top: 25px;
     font-size: 14px;
