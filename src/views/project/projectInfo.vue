@@ -167,14 +167,35 @@
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="项目设计" name="sixth">
+        <span class="info-title-head">项目阶段设置</span>
         <span class="process-box">
           <span v-for="(ele, ind) in galfList" :key="ind" class="proc-next-box">
             <galf :title="ele.title" :choo="ele.choo"></galf>
-            <span class="cell_dashed"></span>
-            <el-button round>{{ele.date}}</el-button>
-            <span class="cell_dashed"></span>
+            <span class="center-box">
+              <span class="cell_dashed"></span>
+              <el-button round>{{ele.date}}</el-button>
+              <span class="cell_dashed"></span>
+            </span>
           </span>
         </span>
+        <span class="bold-line"></span>
+        <div>
+          <span class="info-title-head">项目信息采集</span>
+          <div style="display: flex;flex-direction: column" class="info-coll">
+            <span>
+              入院检验信息表
+            </span>
+              <span class="set-box">
+              已设置20个字段（入院诊断，住院时间，年龄）
+            </span>
+              <span>
+              一般检验信息
+            </span>
+              <span class="set-box">
+              已设置20个字段（CEA， CA125，CY211，NSE，SCC）
+            </span>
+          </div>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="统计分析" name="seven">定时任务补偿</el-tab-pane>
     </el-tabs>
@@ -377,6 +398,28 @@
 </script>
 
 <style scoped>
+  .center-box {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    margin-top: -28px;
+  }
+  .info-coll span{
+    margin-top: 20px;
+  }
+  .set-box {
+    height: 50px;
+    border: 1px solid gray;
+    line-height: 50px;
+    padding-left: 20px;
+  }
+  .bold-line {
+    border-top:2px solid #D7D7D7;
+    width: 100%;
+    text-align: center;
+    height: 2px;
+    display: inline-block;
+  }
   .cell_dashed{
     border-bottom:1px dashed #D7D7D7;
     width: 60px;
@@ -390,6 +433,8 @@
   .process-box {
     display: flex;
     flex-direction: row;
+    margin-bottom: -27px;
+    height: 85px;
   }
   .pane-box {
     margin-top: 30px

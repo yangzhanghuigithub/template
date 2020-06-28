@@ -180,18 +180,18 @@
         <div style="line-height: 276px;font-weight: bold;font-size: 18px;">基线</div>
         <div style="font-size: 164px">{</div>
         <div style="display: flex;flex-direction: column">
-        <span>
-          入院检验信息表
-        </span>
-          <span class="set-box">
-          已设置20个字段（入院诊断，住院时间，年龄）
-        </span>
           <span>
-          一般检验信息
-        </span>
-          <span class="set-box">
-          已设置20个字段（CEA， CA125，CY211，NSE，SCC）
-        </span>
+            入院检验信息表
+          </span>
+            <span class="set-box">
+            已设置20个字段（入院诊断，住院时间，年龄）
+          </span>
+            <span>
+            一般检验信息
+          </span>
+            <span class="set-box">
+            已设置20个字段（CEA， CA125，CY211，NSE，SCC）
+          </span>
         </div>
       </div>
     </div>
