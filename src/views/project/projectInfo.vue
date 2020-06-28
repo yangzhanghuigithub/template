@@ -197,7 +197,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="统计分析" name="seven">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="统计分析" name="seven">统计分析</el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -208,9 +208,14 @@
 
   export default {
     name: "projectInfo",
+    mounted() {
+      this.activeName = this.$route.params.tabName
+    },
     components: {galf},
     data() {
       return {
+        self: '',
+        textarea2: '',
         galfList: [
           {title: '基线', choo: false, date: '10天±3天'},
           {title: '治疗阶段A', choo: true, date: '10天±3天'}

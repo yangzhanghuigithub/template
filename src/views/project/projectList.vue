@@ -40,10 +40,10 @@
             </span>
           </div>
           <div class="button-box">
-            <button @click="toProjInfo">项目首页</button>
-            <button>项目信息</button>
-            <button>项目设计</button>
-            <button>统计分析</button>
+            <button @click="toProjInfo('first')">项目首页</button>
+            <button @click="toProjInfo('second')">项目信息</button>
+            <button @click="toProjInfo('sixth')">项目设计</button>
+            <button @click="toProjInfo('seven')">统计分析</button>
           </div>
         </div>
 
@@ -77,8 +77,14 @@
       }
     },
     methods: {
-      toProjInfo(){
-        this.$router.push("/pms/projectInfo")
+      toProjInfo(tabName){
+        this.$router.push({
+          path: '/pms/projectInfo',
+          name: 'projectInfo',
+          params: {
+            tabName: tabName
+          }
+        })
       },
       change(e) {
         this.$forceUpdate();
