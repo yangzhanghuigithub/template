@@ -30,6 +30,12 @@ Vue.prototype.$auth = auth;
 Vue.prototype.$http = axios;
 Vue.prototype.$echarts = echarts;
 
+Vue.directive("permission", {
+  inserted: function (el, binding, vnode,oldVnode) {
+
+  }
+})
+
 new Vue({
   el: '#app',
   router,

@@ -32,7 +32,7 @@
           项目信息
         </span>
         <span>
-          <lable>*项目名称</lable>
+          <lable><label class="must">*</label>项目名称</lable>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目名称"
                     v-model="input"
@@ -48,7 +48,7 @@
           </el-input>
         </span>
         <span>
-          <lable>*项目领域</lable>
+          <lable><label class="must">*</label>项目领域</lable>
           <el-select class="cont-right" v-model="value" placeholder="请选择">
             <el-option
               v-for="item in options"
@@ -74,7 +74,7 @@
             :limit="3"
             :on-exceed="handleExceed"
             >
-            <el-button size="small" type="primary"><i class="iconfont icon21" style="font-size: 13px"></i>上传图片</el-button>
+            <el-button size="small" type="primary"><i class="iconfont icon21"></i>上传图片</el-button>
           </el-upload>
         </span>
         <span>
@@ -139,7 +139,7 @@
           :limit="3"
           :on-exceed="handleExceed"
         >
-          <el-button size="small" style="margin-top: 20px" type="primary"><i class="iconfont icon21" style="font-size: 13px"></i>上传附件</el-button>
+          <el-button size="small" style="margin-top: 20px" type="primary"><i class="iconfont icon21"></i>上传附件</el-button>
         </el-upload>
       </div>
     </div>
@@ -150,7 +150,7 @@
       <span>
         <galf :title="galfTitle" :choo="choo"></galf>
         <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
-          <i class="iconfont icon21" style="font-size: 14px"></i>添加阶段
+          <i class="iconfont icon21"></i>添加阶段
         </el-button>
         <Icon type="information-circled" style="font-size: 20px;padding-left: 5px"></Icon>
       </span>

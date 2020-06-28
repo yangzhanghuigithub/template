@@ -107,7 +107,7 @@
             <i-table border :content="self" :columns="fileColumns" :data="fileList"></i-table>
           </div>
           <span>
-            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21" style="font-size: 14px"></i>上传文件</el-button>
+            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21"></i>上传文件</el-button>
             <span style="margin-left: 15px">注：单个上传文件大小限制为50M</span>
           </span>
         </div>
@@ -115,7 +115,7 @@
       <el-tab-pane label="成员管理" name="fourth">
         <div>
           <div style="margin-bottom: 20px">
-            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21" style="font-size: 14px"></i>上传文件</el-button>
+            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21"></i>上传文件</el-button>
           </div>
           <span>
             <i-table border :columns="memberColumns" :data="memberList"></i-table>
