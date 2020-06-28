@@ -10,14 +10,14 @@
       </span>
       <span>
         <!--  创建项目  -->
-        <el-button type="success" @click="projNext" v-if="titleItem[0].isActive">继续下一步</el-button>
+        <el-button type="success" @click="jumpTab(0, 1)" v-if="titleItem[0].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveProj" v-if="titleItem[0].isActive">保存并退出</el-button>
         <!--  项目设计  -->
-        <el-button type="success" @click="lastDesi" v-if="titleItem[1].isActive">上一步</el-button>
-        <el-button type="success" @click="desiNext" v-if="titleItem[1].isActive">继续下一步</el-button>
+        <el-button type="success" @click="jumpTab(1, 0)" v-if="titleItem[1].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(1, 2)" v-if="titleItem[1].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveDesi" v-if="titleItem[1].isActive">保存并退出</el-button>
         <!--  项目发布  -->
-        <el-button type="success" @click="lastPubl" v-if="titleItem[2].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(2, 1)" v-if="titleItem[2].isActive">上一步</el-button>
         <el-button type="success" @click="savePubl" v-if="titleItem[2].isActive">保存并退出</el-button>
         <el-button type="success" @click="toPubl" v-if="titleItem[2].isActive">发布</el-button>
       </span>
@@ -35,7 +35,7 @@
           <lable><label class="must">*</label>项目名称</lable>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目名称"
-                    v-model="input"
+                    v-model.trim="project.projName"
                     clearable>
           </el-input>
         </span>
@@ -43,18 +43,17 @@
           <lable>项目英文名</lable>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目英文名"
-                    v-model="input"
+                    v-model.trim="project.englishName"
                     clearable>
           </el-input>
         </span>
         <span>
           <lable><label class="must">*</label>项目领域</lable>
-          <el-select class="cont-right" v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+          <el-select class="cont-right" v-model.trim="value" placeholder="请选择">
+            <el-option v-for="(item, ind) in domainList"
+              :key="ind"
+              :label="item.name"
+              :value="item.dictId">
             </el-option>
           </el-select>
         </span>
@@ -206,6 +205,8 @@
     name: "addProject",
     data() {
       return {
+        project: {},
+        domainList: [],
         galfTitle: '基线',
         choo: false,
         titleItem: [
@@ -253,22 +254,18 @@
         value: ''
       }
     },
+    created() {
+      this.getDomain();
+    },
     methods: {
-      projNext(){
-        this.titleItem[0].isActive = false;
-        this.titleItem[1].isActive = true;
+      getDomain(){
+        this.$api.dictList({typeId: this.$store.getters.projectDomain}).then((data) => {
+          this.domainList = data.resultData;
+        })
       },
-      lastDesi(){
-        this.titleItem[1].isActive = false;
-        this.titleItem[0].isActive = true;
-      },
-      desiNext(){
-        this.titleItem[1].isActive = false;
-        this.titleItem[2].isActive = true;
-      },
-      lastPubl(){
-        this.titleItem[2].isActive = false;
-        this.titleItem[1].isActive = true;
+      jumpTab(i, j){
+        this.titleItem[i].isActive = false;
+        this.titleItem[j].isActive = true;
       },
       change(e) {
         this.$forceUpdate();
