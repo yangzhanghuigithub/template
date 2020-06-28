@@ -148,7 +148,7 @@
     <div style="display: flex;flex-direction: column;" v-if="titleItem[1].isActive">
       <span class="proj-info">项目阶段设计</span>
       <span>
-        <galf></galf>
+        <galf :title="galfTitle" :choo="choo"></galf>
         <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
           <i class="iconfont icon21" style="font-size: 14px"></i>添加阶段
         </el-button>
@@ -206,6 +206,8 @@
     name: "addProject",
     data() {
       return {
+        galfTitle: '基线',
+        choo: false,
         titleItem: [
           {icon: 'icontianjiaadd146', title: '创建项目', isActive: true},
           {icon: 'iconsheji', title: '项目设计', isActive: false},

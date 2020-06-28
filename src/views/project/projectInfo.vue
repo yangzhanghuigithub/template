@@ -112,19 +112,101 @@
           </span>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="成员管理" name="fourth">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="分组管理" name="fifth">定时任务补偿</el-tab-pane>
-      <el-tab-pane label="项目设计" name="sixth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="成员管理" name="fourth">
+        <div>
+          <div style="margin-bottom: 20px">
+            <el-button style="margin-top: 20px" size="small"><i class="iconfont icon21" style="font-size: 14px"></i>上传文件</el-button>
+          </div>
+          <span>
+            <i-table border :columns="memberColumns" :data="memberList"></i-table>
+          </span>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="分组管理" name="fifth">
+        <el-tabs type="border-card">
+          <el-tab-pane>
+            <span slot="label">
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  默认分组<Icon type="navicon-round" style="margin-left: 15px;font-size: 16px"></Icon>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>分组名称</el-dropdown-item>
+                  <el-dropdown-item>删除分组</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </span>
+            <span>
+              <span>纳排条件：</span>
+              <el-input
+                type="textarea"
+                :autosize="{ minRows: 5, maxRows: 8}"
+                placeholder="请输入内容"
+                v-model="textarea2">
+              </el-input>
+            </span>
+          </el-tab-pane>
+          <el-tab-pane>
+            <span slot="label">
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <Icon style="margin-right: 5px;font-size: 20px" type="android-add"></Icon>默认分组
+                </span>
+              </el-dropdown>
+            </span>
+            <span>
+              <span>纳排条件：</span>
+              <el-input
+                type="textarea"
+                :autosize="{ minRows: 5, maxRows: 8}"
+                placeholder="请输入内容"
+                v-model="textarea2">
+              </el-input>
+            </span>
+          </el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
+      <el-tab-pane label="项目设计" name="sixth">
+        <span class="process-box">
+          <span v-for="(ele, ind) in galfList" :key="ind" class="proc-next-box">
+            <galf :title="ele.title" :choo="ele.choo"></galf>
+            <span class="cell_dashed"></span>
+            <el-button round>{{ele.date}}</el-button>
+            <span class="cell_dashed"></span>
+          </span>
+        </span>
+      </el-tab-pane>
       <el-tab-pane label="统计分析" name="seven">定时任务补偿</el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
+
+  import galf from "../../components/flag/galf";
+
   export default {
     name: "projectInfo",
+    components: {galf},
     data() {
       return {
+        galfList: [
+          {title: '基线', choo: false, date: '10天±3天'},
+          {title: '治疗阶段A', choo: true, date: '10天±3天'}
+        ],
+        memberColumns: [
+          {title: '成员姓名',key: 'name'},
+          {title: '联系方式',key: 'phone'},
+          {title: '账号',key: 'username'},
+          {title: '角色',key: 'role'}
+        ],
+        memberList: [
+          {name: 'yzh', phone: '13749374934', username: 'yzh', role: 'admin'},
+          {name: 'yzh', phone: '13749374934', username: 'yzh', role: 'admin'},
+          {name: 'yzh', phone: '13749374934', username: 'yzh', role: 'admin'},
+          {name: 'yzh', phone: '13749374934', username: 'yzh', role: 'admin'},
+          {name: 'yzh', phone: '13749374934', username: 'yzh', role: 'admin'}
+        ],
         patientColumns: [
           {title: '状态', key: 'state', width: 100, fixed: 'left'},
           {title: '患者姓名', key: 'patientName', width: 100, fixed: 'left'},
@@ -295,6 +377,20 @@
 </script>
 
 <style scoped>
+  .cell_dashed{
+    border-bottom:1px dashed #D7D7D7;
+    width: 60px;
+    text-align: center;
+  }
+  .proc-next-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .process-box {
+    display: flex;
+    flex-direction: row;
+  }
   .pane-box {
     margin-top: 30px
   }
