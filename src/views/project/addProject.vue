@@ -10,14 +10,14 @@
       </span>
       <span>
         <!--  创建项目  -->
-        <el-button type="success" @click="jumpTab(0, 1)" v-if="titleItem[0].isActive">继续下一步</el-button>
+        <el-button type="success" @click="jumpTab(1,0, 1)" v-if="titleItem[0].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveProj" v-if="titleItem[0].isActive">保存并退出</el-button>
         <!--  项目设计  -->
-        <el-button type="success" @click="jumpTab(1, 0)" v-if="titleItem[1].isActive">上一步</el-button>
-        <el-button type="success" @click="jumpTab(1, 2)" v-if="titleItem[1].isActive">继续下一步</el-button>
+        <el-button type="success" @click="jumpTab(2,1, 0)" v-if="titleItem[1].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(3,1, 2)" v-if="titleItem[1].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveDesi" v-if="titleItem[1].isActive">保存并退出</el-button>
         <!--  项目发布  -->
-        <el-button type="success" @click="jumpTab(2, 1)" v-if="titleItem[2].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(4, 1)" v-if="titleItem[2].isActive">上一步</el-button>
         <el-button type="success" @click="savePubl" v-if="titleItem[2].isActive">保存并退出</el-button>
         <el-button type="success" @click="toPubl" v-if="titleItem[2].isActive">发布</el-button>
       </span>
@@ -32,7 +32,7 @@
           项目信息
         </span>
         <span>
-          <lable><label class="must">*</label>项目名称</lable>
+          <label><label class="must">*</label>项目名称</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目名称"
                     v-model.trim="project.projName"
@@ -40,7 +40,7 @@
           </el-input>
         </span>
         <span>
-          <lable>项目英文名</lable>
+          <label>项目英文名</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目英文名"
                     v-model.trim="project.englishName"
@@ -48,8 +48,8 @@
           </el-input>
         </span>
         <span>
-          <lable><label class="must">*</label>项目领域</lable>
-          <el-select class="cont-right" v-model.trim="value" placeholder="请选择">
+          <label><label class="must">*</label>项目领域</label>
+          <el-select class="cont-right" v-model.trim="project.projArea" placeholder="请选择">
             <el-option v-for="(item, ind) in domainList"
               :key="ind"
               :label="item.name"
@@ -58,44 +58,43 @@
           </el-select>
         </span>
         <span class="upload-box">
-          <lable>项目图标</lable>
+          <label>项目图标</label>
           <el-image
             style="width: 100px; height: 100px; margin: 20px"
-            src="http://yzh:9080/lrhealth/u3201.png"
+            :src="project.projIcon ? project.projIcon : this.$store.getters.defaultProjIcon"
             fit="fill"></el-image>
           <el-upload
             class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            multiple
-            :limit="3"
+            :action="fileUploadUrl"
+            :headers="userToken"
+            :on-success="iconUploadSuccessHandler"
+            :show-file-list="false"
             :on-exceed="handleExceed"
             >
             <el-button size="small" type="primary"><i class="iconfont icon21"></i>上传图片</el-button>
           </el-upload>
         </span>
         <span>
-          <lable>研究机构</lable>
+          <label>研究机构</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入研究机构"
-                    v-model="input"
+                    v-model.trim="project.projOrgnize"
                     clearable>
           </el-input>
         </span>
         <span>
-          <lable>研究描述</lable>
+          <label>研究描述</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入研究描述"
-                    v-model="input"
+                    v-model.trim="project.projDesc"
                     clearable>
           </el-input>
         </span>
         <span>
-          <lable>起止时间</lable>
+          <label>起止时间</label>
           <el-date-picker class="cont-right"
-            v-model="value"
+            v-model.trim="dateValue"
+            value-format="yyyy-MM-dd"
             type="daterange"
             align="right"
             unlink-panels
@@ -106,18 +105,18 @@
           </el-date-picker>
         </span>
         <span>
-          <lable>项目注册号</lable>
+          <label>项目注册号</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目注册号"
-                    v-model="input"
+                    v-model="project.registNum"
                     clearable>
           </el-input>
         </span>
         <span>
-          <lable>项目备案号</lable>
+          <label>项目备案号</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目备案号"
-                    v-model="input"
+                    v-model="project.ethicNum"
                     clearable>
           </el-input>
         </span>
@@ -130,7 +129,7 @@
         <div style="font-size: 14px;margin-top: 40px">暂无附件</div>
         <el-upload
           class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          :action="fileUploadUrl"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :before-remove="beforeRemove"
@@ -200,12 +199,13 @@
 <script>
 
   import galf from '../../components/flag/galf'
+  import {Message} from "element-ui";
 
   export default {
     name: "addProject",
     data() {
       return {
-        project: {},
+        project: {projIcon: ''},
         domainList: [],
         galfTitle: '基线',
         choo: false,
@@ -214,16 +214,9 @@
           {icon: 'iconsheji', title: '项目设计', isActive: false},
           {icon: 'iconfabu1', title: '项目发布', isActive: false}
         ],
-        input: '',
-        options: [],
-        selectValue: [],
-        fileList: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }],
+        fileUploadUrl: process.env.BASE_API + '/base/minio/upload',
+        userToken: {'LRHEALTH-AUTHORIZATION-TOKEN': this.$auth.getToken()},
+        dateValue: '',
         pickerOptions: {
           shortcuts: [{
             text: '最近一周',
@@ -250,22 +243,39 @@
               picker.$emit('pick', [start, end]);
             }
           }]
-        },
-        value: ''
+        }
       }
     },
     created() {
       this.getDomain();
     },
     methods: {
+      iconUploadSuccessHandler(res, file, fileList){
+        console.log(res)
+        this.project.projIcon = res.resultData.fileUrl;
+      },
       getDomain(){
         this.$api.dictList({typeId: this.$store.getters.projectDomain}).then((data) => {
           this.domainList = data.resultData;
         })
       },
-      jumpTab(i, j){
+      jumpTab(type, i, j){
         this.titleItem[i].isActive = false;
         this.titleItem[j].isActive = true;
+        if (type == 1){
+          this.saveProj();
+        }
+      },
+      saveProj(){
+        this.project.startTime = this.dateValue[0];
+        this.project.endTime = this.dateValue[1];
+        this.$api.saveProject(this.project).then((data) => {
+          Message({
+            message: data.resultDesc,
+            type: 'success',
+            duration: 3 * 1000
+          })
+        })
       },
       change(e) {
         this.$forceUpdate();
@@ -326,7 +336,7 @@
   .cont-right {
     width: 90%;
   }
-  lable {
+  label {
     width: 15%;
     line-height: 40px;
     align-self: center;
