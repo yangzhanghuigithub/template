@@ -7,6 +7,8 @@ const getters = {
   roles: state => state.user.roles,
   addRouters: state => state.permission.addRouters,
   routers: state => state.permission.routers,
-  projectDomain: state => state.global.projectDomain
+  projectDomain: state => state.global.projectDomain,
+  userTokenKey: state => state.global.userTokenKey,
+  defaultProjIcon: state => state.global.defaultProjIcon
 }
 export default getters

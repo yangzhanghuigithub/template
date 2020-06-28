@@ -1,5 +1,5 @@
 import {login, getUser, getMenu, logout, getInfo} from './login'
-import {projectList, patientList} from "./projiect";
+import {projectList, saveProject, patientList} from "./projiect";
 import {dictList} from "./dict";
 
 export default {
@@ -10,5 +10,6 @@ export default {
   logout: logout,
   projectList: projectList,
   patientList: patientList,
-  dictList: dictList
+  dictList: dictList,
+  saveProject: saveProject
 }

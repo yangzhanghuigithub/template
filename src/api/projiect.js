@@ -8,6 +8,14 @@ export function projectList(params) {
   })
 }
 
+export function saveProject(params) {
+  return request({
+    url: '/base/project/getListPage',
+    method: 'POST',
+    params: request.adornParams(params)
+  })
+}
+
 export function patientList(params) {
   return request({
     url: '/base/patient/getListPage',
