@@ -203,20 +203,67 @@
             <a class="click-set">点击这里继续设置</a>
           </span>
         </div>
-        <addcrf :creteCrf="createCrf" v-if="stageActive == 0"></addcrf>
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
       </span>
 
-      <div style="display: flex;flex-direction: column">
-        <addcrf :creteCrf="createCrf" v-if="stageActive == 1"></addcrf>
+      <div style="display: flex;flex-direction: column" v-if="stageActive == 1">
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
       </div>
 
-      <div style="display: flex;flex-direction: column">
-        <addcrf :creteCrf="createCrf" v-if="stageActive == 2"></addcrf>
+      <div style="display: flex;flex-direction: column" v-if="stageActive == 2">
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
       </div>
 
-      <div style="display: flex;flex-direction: column">
-        <addcrf :creteCrf="createCrf" v-if="stageActive == 3"></addcrf>
+      <div style="display: flex;flex-direction: column" v-if="stageActive == 3">
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
       </div>
+
+      <div style="display: flex;flex-direction: column" v-if="stageActive == 4">
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
+      </div>
+
+      <div style="display: flex;flex-direction: column" v-if="stageActive == 5">
+        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
+      </div>
+
+      <el-dialog
+        center
+        title="添加信息表"
+        :visible.sync="createCrfDialog"
+        width="30%"
+        :before-close="handleClose">
+        <span style="display: flex;flex-direction: column">
+          <el-button style="width: 50%" size="small"><i class="iconfont icon21"></i>自定义CRF</el-button>
+          <div>常用</div>
+          <hr/>
+          <div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between">
+            <el-button style="margin-left: 10px" class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+            <el-button class="add-crf" size="small">姓名</el-button>
+          </div>
+        </span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="createCrfDialog = false">取 消</el-button>
+          <el-button type="primary" @click="createCrf">确 定</el-button>
+        </span>
+      </el-dialog>
     </div>
 
     <!--  项目发布  -->
@@ -278,6 +325,7 @@
         stageActive : 0,
         formLabelWidth: "70px",
         createStageDialog: false,
+        createCrfDialog: false,
         project: {projIcon: ''},
         domainList: [],
         titleItem: [
@@ -322,7 +370,14 @@
     },
     methods: {
       createCrf(){
-
+        this.createStageDialog = false;
+      },
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
       },
       createStage(){
         this.createStageDialog = false;
@@ -336,7 +391,6 @@
         this.stage = {};
       },
       iconUploadSuccessHandler(res, file, fileList){
-        console.log(res)
         this.project.projIcon = res.resultData.fileUrl;
       },
       getDomain(){
@@ -391,6 +445,12 @@
 </script>
 
 <style scoped>
+  .add-crf {
+    width: 140px;
+    height: 30px;
+    margin-top: 25px;
+    font-size: 14px
+  }
   .center-box {
     display: flex;
     align-items: center;

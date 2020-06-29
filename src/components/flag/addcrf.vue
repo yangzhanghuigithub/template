@@ -1,5 +1,5 @@
 <template>
-  <el-button onclick="createCrf()" class="add-crf" size="small">
+  <el-button onclick="toCreateCrf()" class="add-crf" size="small">
     <i class="iconfont icon21"></i>添加CRF
   </el-button>
 </template>
@@ -11,18 +11,13 @@
 
     },
     methods: {
-      createCrf(){
-        this.$emit("createCrf");
+      toCreateCrf(){
+        this.$emit("toCreateCrf");
       }
     }
   }
 </script>
 
 <style scoped>
-  .add-crf {
-    width: 140px;
-    height: 30px;
-    margin-top: 25px;
-    font-size: 14px
-  }
+
 </style>
