@@ -10,7 +10,7 @@ export function projectList(params) {
 
 export function saveProject(params) {
   return request({
-    url: '/base/project/getListPage',
+    url: '/base/project/saveProject',
     method: 'POST',
     params: request.adornParams(params)
   })
