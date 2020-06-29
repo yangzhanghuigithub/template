@@ -157,6 +157,7 @@
         <el-button @click="createStageDialog = true" style="width: 140px;height: 30px; margin-left: 50px;margin-top: 20px;font-size: 14px" size="small">
           <i class="iconfont icon21"></i>添加阶段
         </el-button>
+
         <!--    添加项目阶段弹出框    -->
         <el-dialog title="添加项目阶段" center width="30%" :visible.sync="createStageDialog" :close-on-click-modal="false" :close-on-press-escape="false">
           <el-form :model="stage">
@@ -179,25 +180,48 @@
             <el-button type="primary" @click="createStage()">确 定</el-button>
           </div>
         </el-dialog>
-        <Icon type="information-circled" style="font-size: 20px;padding-left: 5px"></Icon>
+        <el-tooltip class="item" effect="dark" content="添加项目阶段" placement="right-start">
+          <Icon type="information-circled" style="font-size: 20px;padding-left: 5px;height: 0px;position: relative;margin-top: 18px;"></Icon>
+        </el-tooltip>
       </span>
       <span class="bold-line"></span>
-      <div style="display: flex;flex-direction: column">
-        <span>
-          入院检验信息表
-        </span>
-        <span class="set-box">
-          <div>已设置20个字段（入院诊断，住院时间，年龄）</div>
-          <a class="click-set">点击这里继续设置</a>
-        </span>
-        <span>
-          一般检验信息
-        </span>
-        <span class="set-box">
-          <div>已设置20个字段（CEA， CA125，CY211，NSE，SCC）</div>
-          <a class="click-set">点击这里继续设置</a>
-        </span>
-      </div>
+
+      <span style="display: flex;flex-direction: column" v-if="stageActive == 0">
+        <div style="display: flex;flex-direction: column">
+          <span>
+            入院检验信息表
+          </span>
+          <span class="set-box">
+            <div>已设置20个字段（入院诊断，住院时间，年龄）</div>
+            <a class="click-set">点击这里继续设置</a>
+          </span>
+          <span>
+            一般检验信息
+          </span>
+          <span class="set-box">
+            <div>已设置20个字段（CEA， CA125，CY211，NSE，SCC）</div>
+            <a class="click-set">点击这里继续设置</a>
+          </span>
+        </div>
+        <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
+          <i class="iconfont icon21"></i>添加CRF
+        </el-button>
+      </span>
+    </div>
+
+    <div style="display: flex;flex-direction: column" v-if="stageActive == 1">
+      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
+        <i class="iconfont icon21"></i>添加CRF
+      </el-button>
+    </div>
+
+    <div style="display: flex;flex-direction: column" v-if="stageActive == 2">
+      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
+        <i class="iconfont icon21"></i>添加CRF
+      </el-button>
+    </div>
+
+    <div style="display: flex;flex-direction: column" v-if="stageActive == 3">
       <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
         <i class="iconfont icon21"></i>添加CRF
       </el-button>
@@ -256,8 +280,9 @@
       return {
         stage: {floatInterval: ''},
         stages:[
-          {name: "基线", choo: false, interval: 10, floatInterval: 3}
+          {name: "基线", choo: false, interval: "10天", floatInterval: "3天", ind: 0}
         ],
+        stageActive : 0,
         formLabelWidth: "70px",
         createStageDialog: false,
         project: {projIcon: ''},
@@ -308,7 +333,9 @@
         this.stages.forEach(function(ele, ind){
           ele.choo = true;
         });
+        this.stageActive = this.stages.length;
         this.stage.choo = false;
+        this.stage.ind = this.stages.length;
         this.stages.push(this.stage);
         this.stage = {};
       },
