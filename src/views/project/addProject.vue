@@ -311,7 +311,6 @@
 <script>
 
   import galf from '../../components/flag/galf';
-  import addcrf from "../../components/flag/addcrf";
   import {Message} from "element-ui";
 
   export default {
@@ -438,8 +437,7 @@
       }
     },
     components: {
-      galf,
-      addcrf
+      galf
     }
   }
 </script>
