@@ -25,6 +25,7 @@
   /*添加按钮+样式*/
   .icon21 {
     font-size: 13px;
+    margin-right: 15px;
   }
   /*下部直线*/
   .bold-line {

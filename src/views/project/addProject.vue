@@ -147,9 +147,31 @@
       <span class="proj-info">项目阶段设计</span>
       <span style="margin-bottom: -22px;">
         <galf :title="galfTitle" :choo="choo"></galf>
-        <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
+        <el-button @click="createPhase = true" style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
           <i class="iconfont icon21"></i>添加阶段
         </el-button>
+        <!--    添加项目阶段弹出框    -->
+        <el-dialog title="添加项目阶段" center width="30%" :visible.sync="createPhase" :close-on-click-modal="false" :close-on-press-escape="false">
+          <el-form :model="phase">
+            <el-form-item label="阶段名称" :label-width="formLabelWidth">
+              <el-input placeholder="请输入内容" v-model="phase.name" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="周期间隔" :label-width="formLabelWidth">
+              <el-input placeholder="请输入内容" v-model="phase.jiange">
+                 <template slot="append">天</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="浮动±" :label-width="formLabelWidth">
+              <el-input placeholder="请输入内容" v-model="phase.fudong">
+                 <template slot="append">天</template>
+                </el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="createPhase = false">取 消</el-button>
+            <el-button type="primary" @click="createPhase = false">确 定</el-button>
+          </div>
+        </el-dialog>
         <Icon type="information-circled" style="font-size: 20px;padding-left: 5px"></Icon>
       </span>
       <span class="bold-line"></span>
@@ -169,8 +191,8 @@
           <a class="click-set">点击这里继续设置</a>
         </span>
       </div>
-      <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
-        <i class="iconfont icon21"></i>添加阶段
+      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
+        <i class="iconfont icon21"></i>添加CRF
       </el-button>
     </div>
 
@@ -225,6 +247,9 @@
     name: "addProject",
     data() {
       return {
+        phase: {},
+        formLabelWidth: "70px",
+        createPhase: false,
         project: {projIcon: ''},
         domainList: [],
         galfTitle: '基线',
