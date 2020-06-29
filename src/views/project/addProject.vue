@@ -325,7 +325,7 @@
         formLabelWidth: "70px",
         createStageDialog: false,
         createCrfDialog: false,
-        project: {projIcon: ''},
+        project: {projIcon: this.$store.getters.defaultProjIcon},
         domainList: [],
         titleItem: [
           {icon: 'icontianjiaadd146', title: '创建项目', isActive: true},
