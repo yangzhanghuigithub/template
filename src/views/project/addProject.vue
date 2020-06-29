@@ -272,16 +272,16 @@
           项目信息
       </span>
       <span>
-        项目名称： 多个肿瘤标记物水平与肺癌诊断及生存结局相关性分析
+        项目名称： {{project.projName}}
       </span>
       <span>
-        项目描述： 多个肿瘤标记物水平与肺癌诊断及生存结局相关性分析
+        项目描述： {{project.projDesc}}
       </span>
       <span>
-        创建人： 王医生
+        创建人： {{$store.getters.name}}
       </span>
       <span>
-        创建时间： 2020-01-01
+        创建时间： {{project.createTime}}
       </span>
       <span class="proj-info">
           采集信息
