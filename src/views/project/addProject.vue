@@ -145,9 +145,16 @@
     <!--  项目设计  -->
     <div style="display: flex;flex-direction: column;" v-if="titleItem[1].isActive">
       <span class="proj-info">项目阶段设计</span>
-      <span style="margin-bottom: -22px;">
-        <galf :title="galfTitle" :choo="choo"></galf>
-        <el-button @click="createStageDialog = true" style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
+      <span style="margin-bottom: -22px;margin-top: 0px">
+        <span v-for="(ele, ind) in stages" :key="ind" class="proc-next-box">
+            <span v-if="ind  > 0" class="center-box">
+              <span class="cell_dashed"></span>
+              <el-button round style="margin-top: 20px">{{ele.interval}}±{{ele.floatInterval}}</el-button>
+              <span class="cell_dashed"></span>
+            </span>
+            <galf :title="ele.name" :choo="ele.choo"></galf>
+          </span>
+        <el-button @click="createStageDialog = true" style="width: 140px;height: 30px; margin-left: 50px;margin-top: 20px;font-size: 14px" size="small">
           <i class="iconfont icon21"></i>添加阶段
         </el-button>
         <!--    添加项目阶段弹出框    -->
@@ -248,13 +255,13 @@
     data() {
       return {
         stage: {floatInterval: ''},
-        stages:[],
+        stages:[
+          {name: "基线", choo: false, interval: 10, floatInterval: 3}
+        ],
         formLabelWidth: "70px",
         createStageDialog: false,
         project: {projIcon: ''},
         domainList: [],
-        galfTitle: '基线',
-        choo: false,
         titleItem: [
           {icon: 'icontianjiaadd146', title: '创建项目', isActive: true},
           {icon: 'iconsheji', title: '项目设计', isActive: false},
@@ -298,6 +305,10 @@
     methods: {
       createStage(){
         this.createStageDialog = false;
+        this.stages.forEach(function(ele, ind){
+          ele.choo = true;
+        });
+        this.stage.choo = false;
         this.stages.push(this.stage);
         this.stage = {};
       },
@@ -356,6 +367,20 @@
 </script>
 
 <style scoped>
+  .center-box {
+    display: flex;
+    align-items: center;
+    height: 53%;
+    margin-top: -10px;
+  }
+  .info-coll span{
+    margin-top: 20px;
+  }
+  .cell_dashed{
+    border-bottom:1px dashed #D7D7D7;
+    width: 60px;
+    text-align: center;
+  }
   .click-set{
     color: #16A085;
   }
