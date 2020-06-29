@@ -398,12 +398,15 @@
         })
       },
       jumpTab(type, i, j){
-        this.titleItem[i].isActive = false;
-        this.titleItem[j].isActive = true;
+        let res = {};
         if (type == 1){
-          this.saveProj();
+          res = this.saveProj();
         }else if(type == 2){
-          this.saveDesi();
+          res = this.saveDesi();
+        }
+        if (res){
+          this.titleItem[i].isActive = false;
+          this.titleItem[j].isActive = true;
         }
       },
       saveProj(){
@@ -415,6 +418,7 @@
             type: 'success',
             duration: 3 * 1000
           })
+          return data;
         })
       },
       saveDesi(){
