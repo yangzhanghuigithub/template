@@ -203,28 +203,20 @@
             <a class="click-set">点击这里继续设置</a>
           </span>
         </div>
-        <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
+        <addcrf :creteCrf="createCrf" v-if="stageActive == 0"></addcrf>
       </span>
-    </div>
 
-    <div style="display: flex;flex-direction: column" v-if="stageActive == 1">
-      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
-        <i class="iconfont icon21"></i>添加CRF
-      </el-button>
-    </div>
+      <div style="display: flex;flex-direction: column">
+        <addcrf :creteCrf="createCrf" v-if="stageActive == 1"></addcrf>
+      </div>
 
-    <div style="display: flex;flex-direction: column" v-if="stageActive == 2">
-      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
-        <i class="iconfont icon21"></i>添加CRF
-      </el-button>
-    </div>
+      <div style="display: flex;flex-direction: column">
+        <addcrf :creteCrf="createCrf" v-if="stageActive == 2"></addcrf>
+      </div>
 
-    <div style="display: flex;flex-direction: column" v-if="stageActive == 3">
-      <el-button style="width: 140px;height: 30px;margin-top: 25px; font-size: 14px" size="small">
-        <i class="iconfont icon21"></i>添加CRF
-      </el-button>
+      <div style="display: flex;flex-direction: column">
+        <addcrf :creteCrf="createCrf" v-if="stageActive == 3"></addcrf>
+      </div>
     </div>
 
     <!--  项目发布  -->
@@ -271,7 +263,8 @@
 
 <script>
 
-  import galf from '../../components/flag/galf'
+  import galf from '../../components/flag/galf';
+  import addcrf from "../../components/flag/addcrf";
   import {Message} from "element-ui";
 
   export default {
@@ -328,6 +321,9 @@
       this.getDomain();
     },
     methods: {
+      createCrf(){
+
+      },
       createStage(){
         this.createStageDialog = false;
         this.stages.forEach(function(ele, ind){
@@ -388,7 +384,8 @@
       }
     },
     components: {
-      galf
+      galf,
+      addcrf
     }
   }
 </script>
