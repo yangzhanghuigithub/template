@@ -23,7 +23,7 @@
       </span>
     </div>
     <div class="list-box">
-      <span class="cont-box">
+      <span class="cont-box" v-for="(ele, ind) in projectList" :key="ind" style="margin-top: 20px">
         <flag :title="title"></flag>
 
         <div>
@@ -73,8 +73,15 @@
         selectValue: [],
         options: [],
         title: '我参与的',
-        input: ''
+        input: '',
+        projectList: []
       }
+    },
+    created() {
+      this.$api.projectList().then((data) => {
+        this.projectList = data.resultData;
+        console.log(this.projectList)
+      })
     },
     methods: {
       toProjInfo(tabName){

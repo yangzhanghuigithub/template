@@ -408,8 +408,8 @@
         }
       },
       saveProj(i, j){
-        this.project.startTime = this.dateValue[0];
-        this.project.endTime = this.dateValue[1];
+        this.project.startDate = this.dateValue[0];
+        this.project.endDate = this.dateValue[1];
         this.$api.saveProject(this.project).then((data) => {
           if (j){
             this.titleItem[i].isActive = false;
