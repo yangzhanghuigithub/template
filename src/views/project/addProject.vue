@@ -13,11 +13,11 @@
         <el-button type="success" @click="jumpTab(1,0, 1)" v-if="titleItem[0].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveProj" v-if="titleItem[0].isActive">保存并退出</el-button>
         <!--  项目设计  -->
-        <el-button type="success" @click="jumpTab(2,1, 0)" v-if="titleItem[1].isActive">上一步</el-button>
-        <el-button type="success" @click="jumpTab(3,1, 2)" v-if="titleItem[1].isActive">继续下一步</el-button>
+        <el-button type="success" @click="jumpTab(0,1, 0)" v-if="titleItem[1].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(2,1, 2)" v-if="titleItem[1].isActive">继续下一步</el-button>
         <el-button type="success" @click="saveDesi" v-if="titleItem[1].isActive">保存并退出</el-button>
         <!--  项目发布  -->
-        <el-button type="success" @click="jumpTab(4, 1)" v-if="titleItem[2].isActive">上一步</el-button>
+        <el-button type="success" @click="jumpTab(0,2, 1)" v-if="titleItem[2].isActive">上一步</el-button>
         <el-button type="success" @click="savePubl" v-if="titleItem[2].isActive">保存并退出</el-button>
         <el-button type="success" @click="toPubl" v-if="titleItem[2].isActive">发布</el-button>
       </span>
@@ -145,13 +145,33 @@
     <!--  项目设计  -->
     <div style="display: flex;flex-direction: column;" v-if="titleItem[1].isActive">
       <span class="proj-info">项目阶段设计</span>
-      <span>
+      <span style="margin-bottom: -22px;">
         <galf :title="galfTitle" :choo="choo"></galf>
         <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
           <i class="iconfont icon21"></i>添加阶段
         </el-button>
         <Icon type="information-circled" style="font-size: 20px;padding-left: 5px"></Icon>
       </span>
+      <span class="bold-line"></span>
+      <div style="display: flex;flex-direction: column">
+        <span>
+          入院检验信息表
+        </span>
+        <span class="set-box">
+          <div>已设置20个字段（入院诊断，住院时间，年龄）</div>
+          <a class="click-set">点击这里继续设置</a>
+        </span>
+        <span>
+          一般检验信息
+        </span>
+        <span class="set-box">
+          <div>已设置20个字段（CEA， CA125，CY211，NSE，SCC）</div>
+          <a class="click-set">点击这里继续设置</a>
+        </span>
+      </div>
+      <el-button style="width: 140px;height: 30px; margin-left: 50px;font-size: 14px" size="small">
+        <i class="iconfont icon21"></i>添加阶段
+      </el-button>
     </div>
 
     <!--  项目发布  -->
@@ -264,6 +284,8 @@
         this.titleItem[j].isActive = true;
         if (type == 1){
           this.saveProj();
+        }else if(type == 2){
+          this.saveDesi();
         }
       },
       saveProj(){
@@ -276,6 +298,9 @@
             duration: 3 * 1000
           })
         })
+      },
+      saveDesi(){
+
       },
       change(e) {
         this.$forceUpdate();
@@ -300,11 +325,15 @@
 </script>
 
 <style scoped>
+  .click-set{
+    color: #16A085;
+  }
   .set-box {
-    height: 50px;
+    height: 70px;
     border: 1px solid gray;
-    line-height: 50px;
+    line-height: 35px;
     padding-left: 20px;
+    flex-direction: column !important;
   }
   .page {
     margin-top: 0px;

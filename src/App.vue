@@ -26,4 +26,12 @@
   .icon21 {
     font-size: 13px;
   }
+  /*下部直线*/
+  .bold-line {
+    border-top:2px solid #D7D7D7;
+    width: 100%;
+    text-align: center;
+    height: 2px;
+    display: inline-block;
+  }
 </style>

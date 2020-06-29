@@ -418,13 +418,6 @@
     line-height: 50px;
     padding-left: 20px;
   }
-  .bold-line {
-    border-top:2px solid #D7D7D7;
-    width: 100%;
-    text-align: center;
-    height: 2px;
-    display: inline-block;
-  }
   .cell_dashed{
     border-bottom:1px dashed #D7D7D7;
     width: 60px;
