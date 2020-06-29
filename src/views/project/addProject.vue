@@ -398,27 +398,28 @@
         })
       },
       jumpTab(type, i, j){
-        let res = {};
         if (type == 1){
-          res = this.saveProj();
+          this.saveProj(i, j);
         }else if(type == 2){
-          res = this.saveDesi();
-        }
-        if (res){
+          this.saveDesi(i, j);
+        }else {
           this.titleItem[i].isActive = false;
           this.titleItem[j].isActive = true;
         }
       },
-      saveProj(){
+      saveProj(i, j){
         this.project.startTime = this.dateValue[0];
         this.project.endTime = this.dateValue[1];
         this.$api.saveProject(this.project).then((data) => {
+          if (j){
+            this.titleItem[i].isActive = false;
+            this.titleItem[j].isActive = true;
+          }
           Message({
             message: data.resultDesc,
             type: 'success',
             duration: 3 * 1000
           })
-          return data;
         })
       },
       saveDesi(){
