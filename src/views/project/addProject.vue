@@ -152,7 +152,7 @@
               <el-button round style="margin-top: 20px">{{ele.interval}}±{{ele.floatInterval}}</el-button>
               <span class="cell_dashed"></span>
             </span>
-            <galf :title="ele.name" :choo="ele.choo"></galf>
+            <galf :title="ele.name" :choo="ele.choo"  @click.native="setActiveStage(ind)"></galf>
           </span>
         <el-button @click="createStageDialog = true" style="width: 140px;height: 30px; margin-left: 50px;margin-top: 20px;font-size: 14px" size="small">
           <i class="iconfont icon21"></i>添加阶段
@@ -186,57 +186,22 @@
       </span>
       <span class="bold-line"></span>
 
-      <span style="display: flex;flex-direction: column" v-if="stageActive == 0">
+      <span style="display: flex;flex-direction: column">
         <div style="display: flex;flex-direction: column">
-          <span>
-            入院检验信息表
-          </span>
-          <span class="set-box">
-            <div>已设置20个字段（入院诊断，住院时间，年龄）</div>
-            <a class="click-set">点击这里继续设置</a>
-          </span>
-          <span>
-            一般检验信息
-          </span>
-          <span class="set-box">
-            <div>已设置20个字段（CEA， CA125，CY211，NSE，SCC）</div>
-            <a class="click-set">点击这里继续设置</a>
+          <span style="display: flex;flex-direction: column" v-for="(ele, ind) in crfs" v-if="stageActive == ele.stage">
+            <span>
+              {{ele.tableName}}
+            </span>
+            <span class="set-box">
+              <div>{{ele.tableField}}</div>
+              <a class="click-set">点击这里继续设置</a>
+            </span>
           </span>
         </div>
         <el-button @click="createCrfDialog = true" class="add-crf" size="small">
           <i class="iconfont icon21"></i>添加CRF
         </el-button>
       </span>
-
-      <div style="display: flex;flex-direction: column" v-if="stageActive == 1">
-        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
-      </div>
-
-      <div style="display: flex;flex-direction: column" v-if="stageActive == 2">
-        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
-      </div>
-
-      <div style="display: flex;flex-direction: column" v-if="stageActive == 3">
-        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
-      </div>
-
-      <div style="display: flex;flex-direction: column" v-if="stageActive == 4">
-        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
-      </div>
-
-      <div style="display: flex;flex-direction: column" v-if="stageActive == 5">
-        <el-button @click="createCrfDialog = true" class="add-crf" size="small">
-          <i class="iconfont icon21"></i>添加CRF
-        </el-button>
-      </div>
 
       <el-dialog
         center
@@ -321,6 +286,10 @@
         stages:[
           {name: "基线", choo: false, interval: "10天", floatInterval: "3天", ind: 0}
         ],
+        crfs: [
+          {tableName: '入院检验信息表', tableField: '已设置20个字段（入院诊断，住院时间，年龄）', stage: 0},
+          {tableName: '一般检验信息', tableField: '已设置20个字段（CEA， CA125，CY211，NSE，SCC）', stage: 0}
+          ],
         stageActive : 0,
         formLabelWidth: "70px",
         createStageDialog: false,
@@ -368,6 +337,13 @@
       this.getDomain();
     },
     methods: {
+      setActiveStage(ind){
+        this.stageActive = ind;
+        this.stages.forEach(function (ele, ind) {
+          ele.choo = true;
+        });
+        this.stages[ind].choo = false;
+      },
       createCrf(){
         this.createStageDialog = false;
       },
@@ -398,14 +374,14 @@
         })
       },
       jumpTab(type, i, j){
-        if (type == 1){
-          this.saveProj(i, j);
-        }else if(type == 2){
-          this.saveDesi(i, j);
-        }else {
+        // if (type == 1){
+        //   this.saveProj(i, j);
+        // }else if(type == 2){
+        //   this.saveDesi(i, j);
+        // }else {
           this.titleItem[i].isActive = false;
           this.titleItem[j].isActive = true;
-        }
+        // }
       },
       saveProj(i, j){
         this.project.startDate = this.dateValue[0];
