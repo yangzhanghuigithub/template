@@ -374,14 +374,14 @@
         })
       },
       jumpTab(type, i, j){
-        // if (type == 1){
-        //   this.saveProj(i, j);
-        // }else if(type == 2){
-        //   this.saveDesi(i, j);
-        // }else {
+        if (type == 1){
+          this.saveProj(i, j);
+        }else if(type == 2){
+          this.saveDesi(i, j);
+        }else {
           this.titleItem[i].isActive = false;
           this.titleItem[j].isActive = true;
-        // }
+        }
       },
       saveProj(i, j){
         this.project.startDate = this.dateValue[0];

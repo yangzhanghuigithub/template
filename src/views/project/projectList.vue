@@ -3,7 +3,7 @@
     <div class="title-box">
       <span class="title-left">
         <span class="my-project">我的项目</span>
-        <span class="total-proj">共计2个</span>
+        <span class="total-proj">共计{{projectList.length}}个</span>
         <el-input @input="change($event)"
                   placeholder="输入项目名称筛选"
                   v-model="input"
@@ -57,6 +57,15 @@
           style="width: 130px; height: 130px; margin: 45px;"
           src="http://yzh:9080/lrhealth/u2487.png"
           fit="fill"></el-image>
+
+        <Dropdown trigger="click" style="margin-right: 10px">
+          <a href="javascript:void(0)">
+              <Icon type="more" style="font-size: 20px"></Icon>
+          </a>
+          <Dropdown-menu slot="list">
+            <Dropdown-item @click="deleteProject(ele.projId)"><Icon type="android-delete" style="margin-right: 8px"></Icon>删除本项目</Dropdown-item>
+          </Dropdown-menu>
+        </Dropdown>
       </span>
     </div>
   </div>
@@ -123,7 +132,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 90px;
+    margin-left: 30px;
+    width: 155px;
     margin-top: 40px;
     font-size: 14px;
   }

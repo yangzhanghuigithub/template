@@ -170,12 +170,12 @@
         <span class="info-title-head">项目阶段设置</span>
         <span class="process-box">
           <span v-for="(ele, ind) in galfList" :key="ind" class="proc-next-box">
-            <galf :title="ele.title" :choo="ele.choo"></galf>
-            <span class="center-box">
+            <span class="center-box" v-if="ind > 0">
               <span class="cell_dashed"></span>
               <el-button round>{{ele.date}}</el-button>
               <span class="cell_dashed"></span>
             </span>
+            <galf :title="ele.title" :choo="ele.choo"></galf>
           </span>
         </span>
         <span class="bold-line"></span>
