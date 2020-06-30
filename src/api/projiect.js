@@ -16,6 +16,14 @@ export function saveProject(params) {
   })
 }
 
+export function deleteProject(params) {
+  return request({
+    url: '/base/project/deleteProject',
+    method: 'POST',
+    params: request.adornParams(params)
+  })
+}
+
 export function patientList(params) {
   return request({
     url: '/base/patient/getListPage',

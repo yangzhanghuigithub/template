@@ -1,5 +1,7 @@
 const global = {
   state: {
+    //超级管理员用户主键
+    adminUserKey: 10000000,
     //用户tokenKey
     userTokenKey: 'LRHEALTH-AUTHORIZATION-TOKEN',
     //项目领域字段类型主键

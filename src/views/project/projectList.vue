@@ -24,19 +24,19 @@
     </div>
     <div class="list-box">
       <span class="cont-box" v-for="(ele, ind) in projectList" :key="ind" style="margin-top: 20px">
-        <flag :title="title"></flag>
+        <flag :title="ele.createUser == $store.getters.adminUserKey ? '示例项目' : '我创建的'"></flag>
 
         <div>
           <div style="display: flex">
             <el-image
               style="width: 100px; height: 100px; margin: 20px"
-              src="http://yzh:9080/lrhealth/u3201.png"
+              :src="ele.projIcon"
               fit="fill"></el-image>
 
             <span class="desc-box">
-              <div>项目名称：多个肿瘤标记物水平与肺癌诊断及生存结局相关性分析</div>
-              <div>项目描述：多个肿瘤标记物水平与肺癌诊断及生存结局相关性分析</div>
-              <div>创建人：王医生</div>
+              <div>项目名称：{{ele.projName}}</div>
+              <div>项目描述：{{ele.projDesc}}</div>
+              <div>创建人：{{ele.createUserName}}</div>
             </span>
           </div>
           <div class="button-box">
@@ -63,7 +63,7 @@
               <Icon type="more" style="font-size: 20px"></Icon>
           </a>
           <Dropdown-menu slot="list">
-            <Dropdown-item @click="deleteProject(ele.projId)"><Icon type="android-delete" style="margin-right: 8px"></Icon>删除本项目</Dropdown-item>
+            <Dropdown-item @click.native="deleteProject(ele.projId)" style="color: #7F7F7F"><Icon type="android-delete" style="margin-right: 8px;color: #7F7F7F"></Icon>删除本项目</Dropdown-item>
           </Dropdown-menu>
         </Dropdown>
       </span>
@@ -81,7 +81,6 @@
       return {
         selectValue: [],
         options: [],
-        title: '我参与的',
         input: '',
         projectList: []
       }
@@ -93,6 +92,25 @@
       })
     },
     methods: {
+      deleteProject(id){
+        this.$confirm('删除后本项目不可恢复，是否确认删除？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$api.deleteProject().then((data) => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
       toProjInfo(tabName){
         this.$router.push({
           path: '/pms/projectInfo',

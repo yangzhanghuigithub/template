@@ -387,6 +387,7 @@
         this.project.startDate = this.dateValue[0];
         this.project.endDate = this.dateValue[1];
         this.$api.saveProject(this.project).then((data) => {
+          this.project.projId = data.resultData;
           if (j){
             this.titleItem[i].isActive = false;
             this.titleItem[j].isActive = true;
