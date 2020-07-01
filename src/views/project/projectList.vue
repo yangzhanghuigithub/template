@@ -9,22 +9,30 @@
                   v-model="input"
                   clearable>
         </el-input>
-        <el-select class="search-sele" v-model="selectValue" multiple placeholder="请选择">
+        <el-select class="search-sele" v-model="projValue" placeholder="所有参与的项目">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            v-for="item in proSele"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key">`
+          </el-option>
+        </el-select>
+        <el-select class="search-sele" v-model="stataValue" placeholder="所有项目状态">
+          <el-option
+            v-for="item in stataSele"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key">
           </el-option>
         </el-select>
       </span>
       <span>
-         <el-button type="success" @click="createProj">创建项目</el-button>
+         <el-button style="margin-left: 15px" type="success" @click="createProj">创建项目</el-button>
       </span>
     </div>
     <div class="list-box">
       <span class="cont-box" v-for="(ele, ind) in projectList" :key="ind" style="margin-top: 20px">
-        <flag :title="ele.createUser == $store.getters.adminUserKey ? '示例项目' : '我创建的'"></flag>
+        <flag :title="ele.createUser == $store.getters.adminUserKey && $store.getters.userId != $store.getters.adminUserKey ? '示例项目' : '我创建的'"></flag>
 
         <div>
           <div style="display: flex">
@@ -50,13 +58,14 @@
         <span class="anal-box">
           <div><span class="digi-box">1218</span>个研究对象</div>
           <div><span class="digi-box">39</span>个研究因素</div>
-          <div>发布时间：2000-01-01</div>
+          <div>发布时间：{{}}</div>
         </span>
 
         <el-image
           style="width: 130px; height: 130px; margin: 45px;"
           src="http://yzh:9080/lrhealth/u2487.png"
           fit="fill"></el-image>
+<!--        <ring></ring>-->
 
         <Dropdown trigger="click" style="margin-right: 10px">
           <a href="javascript:void(0)">
@@ -73,14 +82,24 @@
 
 <script>
 
-  import flag from '../../components/flag/flag'
+  import flag from '../../components/flag/flag';
+  import ring from "../../components/flag/ring";
 
   export default {
     name: "project",
     data() {
       return {
-        selectValue: [],
-        options: [],
+        projValue: '',
+        stataValue: '',
+        proSele: [
+          {key: 0, value: '我创建的'},
+          {key: 1, value: '我参与的'},
+        ],
+        stataSele: [
+          {key : 0, value: '已发布'},
+          {key : 1, value: '未发布'},
+          {key : 2, value: '已锁定'},
+         ],
         input: '',
         projectList: []
       }
@@ -128,7 +147,8 @@
       }
     },
     components: {
-      flag
+      flag,
+      ring
     }
   }
 </script>
@@ -200,5 +220,6 @@
   }
   .search-sele {
     margin-left: 15px;
+    width: 45%;
   }
 </style>

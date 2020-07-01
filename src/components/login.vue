@@ -40,7 +40,7 @@
       toLogin() {
         this.$api.login(this.user).then((data) => {
           this.$auth.setToken(data.resultData.userToken)
-          window.sessionStorage.setItem("user", data.resultData)
+          this.$store.commit("SET_USER", data.resultData.userId);
           this.$router.push("/")
           Message({
             message: data.resultDesc,

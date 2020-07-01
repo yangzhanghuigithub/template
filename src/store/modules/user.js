@@ -6,10 +6,14 @@ const user = {
     token: getToken(),
     name: '',
     avatar: '',
+    userId: '',
     roles: []
   },
 
   mutations: {
+    SET_USER: (state, userId) => {
+      state.userId = userId
+    },
     SET_TOKEN: (state, token) => {
       state.token = token
     },
