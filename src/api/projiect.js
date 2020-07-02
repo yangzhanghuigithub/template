@@ -4,7 +4,7 @@ export function projectList(params) {
   return request({
     url: '/base/project/getListPage',
     method: 'GET',
-    params: request.adornData(params)
+    params: request.adornParams(params)
   })
 }
 

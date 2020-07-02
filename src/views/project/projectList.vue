@@ -6,18 +6,18 @@
         <span class="total-proj">共计{{projectList.length}}个</span>
         <el-input @input="change($event)"
                   placeholder="输入项目名称筛选"
-                  v-model="input"
+                  v-model="project.projName"
                   clearable>
         </el-input>
-        <el-select class="search-sele" v-model="projValue" placeholder="所有参与的项目">
+        <el-select class="search-sele" v-model="project.projType" placeholder="所有参与的项目">
           <el-option
             v-for="item in proSele"
             :key="item.key"
             :label="item.value"
-            :value="item.key">`
+            :value="item.key">
           </el-option>
         </el-select>
-        <el-select class="search-sele" v-model="stataValue" placeholder="所有项目状态">
+        <el-select class="search-sele" v-model="project.status" placeholder="所有项目状态">
           <el-option
             v-for="item in stataSele"
             :key="item.key"
@@ -89,8 +89,6 @@
     name: "project",
     data() {
       return {
-        projValue: '',
-        stataValue: '',
         proSele: [
           {key: 0, value: '我创建的'},
           {key: 1, value: '我参与的'},
@@ -100,12 +98,12 @@
           {key : 1, value: '未发布'},
           {key : 2, value: '已锁定'},
          ],
-        input: '',
+        project: {projName: ''},
         projectList: []
       }
     },
     created() {
-      this.$api.projectList().then((data) => {
+      this.$api.projectList(this.project).then((data) => {
         this.projectList = data.resultData;
         console.log(this.projectList)
       })
