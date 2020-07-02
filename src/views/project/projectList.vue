@@ -69,7 +69,7 @@
         <span class="anal-box">
           <div><span class="digi-box">1218</span>个研究对象</div>
           <div><span class="digi-box">39</span>个研究因素</div>
-          <div>发布时间：{{}}</div>
+          <div>发布时间：{{ele.pubTime == null ? ele.createTime.slice(0, 10) : ele.pubTime.slice(0, 10)}}</div>
         </span>
 
         <el-image

@@ -65,6 +65,7 @@
             fit="fill"></el-image>
           <el-upload
             class="upload-demo"
+            :accept="iconAccept"
             :action="fileUploadUrl"
             :headers="userToken"
             :on-success="iconUploadSuccessHandler"
@@ -130,15 +131,61 @@
         <el-upload
           class="upload-demo"
           :action="fileUploadUrl"
+          :headers="userToken"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :before-remove="beforeRemove"
+          :show-file-list="false"
+          :on-success="fileUploadSuccessHandler"
           multiple
           :limit="3"
           :on-exceed="handleExceed"
         >
           <el-button size="small" style="margin-top: 20px" type="primary"><i class="iconfont icon21"></i>上传附件</el-button>
         </el-upload>
+
+        <el-table
+          :data="project.files"
+          size="small"
+          style="width: 100%">
+          <el-table-column
+            label=""
+            width="70">
+            <template slot-scope="scope" style="width: 70px;display: flex;flex-direction: column;align-items: center;">
+              <Icon type="android-upload"></Icon>
+              <div>上传中</div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="fileName"
+            label="文件名"
+            width="120">
+          </el-table-column>
+          <el-table-column
+            prop="fileSize"
+            label="大小"
+            width="70">
+          </el-table-column>
+          <el-table-column
+            prop="createUser"
+            label="上传人"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="city"
+            label="权限"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="100">
+            <template slot-scope="scope">
+              <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+              <el-button type="text" size="small">编辑</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </div>
 
@@ -282,6 +329,7 @@
     name: "addProject",
     data() {
       return {
+        iconAccept: '.jpg,.png',
         stage: {floatInterval: ''},
         stages:[
           {name: "基线", choo: false, interval: "10天", floatInterval: "3天", ind: 0}
@@ -294,7 +342,7 @@
         formLabelWidth: "70px",
         createStageDialog: false,
         createCrfDialog: false,
-        project: {projIcon: this.$store.getters.defaultProjIcon},
+        project: {projIcon: this.$store.getters.defaultProjIcon, files: [], fileIds: []},
         domainList: [],
         titleItem: [
           {icon: 'icontianjiaadd146', title: '创建项目', isActive: true},
@@ -367,6 +415,10 @@
       },
       iconUploadSuccessHandler(res, file, fileList){
         this.project.projIcon = res.resultData.fileUrl;
+      },
+      fileUploadSuccessHandler(res, file, fileList){
+        this.project.fileIds.push(res.resultData.fileId);
+        this.project.files.push(res.resultData);
       },
       getDomain(){
         this.$api.dictList({typeId: this.$store.getters.projectDomain}).then((data) => {
