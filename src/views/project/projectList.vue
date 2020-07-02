@@ -25,6 +25,17 @@
             :value="item.key">
           </el-option>
         </el-select>
+        <el-select class="search-sele" v-model="project.orderBy" placeholder="排序">
+          <el-option
+            v-for="item in orderSele"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key">
+          </el-option>
+        </el-select>
+      </span>
+      <span>
+         <el-button style="margin-left: 15px" type="primary" @click="searchProj">查询</el-button>
       </span>
       <span>
          <el-button style="margin-left: 15px" type="success" @click="createProj">创建项目</el-button>
@@ -90,25 +101,37 @@
     data() {
       return {
         proSele: [
-          {key: 0, value: '我创建的'},
-          {key: 1, value: '我参与的'},
+          {key: null, value: '所有参与的项目'},
+          {key: 0, value: '示例项目'},
+          {key: 1, value: '我创建的'},
+          {key: 2, value: '我参与的'},
         ],
         stataSele: [
-          {key : 0, value: '已发布'},
-          {key : 1, value: '未发布'},
+          {key : null, value: '所有项目状态'},
+          {key : 0, value: '未发布'},
+          {key : 1, value: '已发布'},
           {key : 2, value: '已锁定'},
+         ],
+        orderSele: [
+          {key : null, value: '排序'},
+          {key : 0, value: '按创建人排序'},
+          {key : 1, value: '按创建时间排序'}
          ],
         project: {projName: ''},
         projectList: []
       }
     },
     created() {
-      this.$api.projectList(this.project).then((data) => {
-        this.projectList = data.resultData;
-        console.log(this.projectList)
-      })
+      this.searchProj();
     },
     methods: {
+      searchProj(){
+        this.$api.projectList({pageIndex: 1, pageSize: 20, projName: this.project.projName,
+          projType: this.project.projType, status: this.project.status, orderBy:this. project.orderBy}).then((data) => {
+          this.projectList = data.resultData.records;
+          console.log(this.projectList)
+        })
+      },
       deleteProject(id){
         this.$confirm('删除后本项目不可恢复，是否确认删除？', '提示', {
           confirmButtonText: '确定',
@@ -207,17 +230,17 @@
   }
 
   .my-project {
-    width: 140px;
+    width: 32%;
     font-size: 15px;
     font-weight: bold;
     align-self: center;
   }
   .total-proj {
-    width: 120px;
+    width: 24%;
     align-self: center;
   }
   .search-sele {
     margin-left: 15px;
-    width: 45%;
+    width: 68%;
   }
 </style>
