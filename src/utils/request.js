@@ -32,9 +32,9 @@ service.interceptors.response.use(
   * code为非200是抛错 可结合自己业务进行修改
   */
     const res = response.data
-    if (res.resultCode !== '200') {
+    if (res.resultCode !== 200) {
       // 401:未登录;
-      if (res.resultCode === '401') {
+      if (res.resultCode === 401) {
         MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
@@ -44,7 +44,13 @@ service.interceptors.response.use(
             location.reload()// 为了重新实例化vue-router对象 避免bug
           })
         })
-      }else {
+      } else if(res.resultCode === 430) {
+        Message({
+          message: res.resultData,
+          type: 'error',
+          duration: 3 * 1000
+        })
+      } else {
         Message({
           message: res.resultDesc,
           type: 'error',
@@ -75,9 +81,6 @@ service.interceptors.response.use(
         break;
       case 408:
         error.message = '请求超时';
-        break;
-      case 430:
-        error.message = error.response.data.resultData;
         break;
       case 500:
         error.message = '服务器端异常';
