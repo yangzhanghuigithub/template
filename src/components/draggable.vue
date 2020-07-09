@@ -7,14 +7,14 @@
           <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove">
             <transition-group class="form-list-group form-first-group" type="transition" :name="'flip-list'" tag="div">
 <!--              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>-->
-                <span class="choose-box" v-for="(ele, ind) in comp_list" :key="ind">
+                <span class="choose-box" @click="clickEle(ele.type)" v-for="(ele, ind) in comp_list" :key="ind">
                   <i class="choose-icon" :class="ele.icon"></i>{{ele.title}}</span>
             </transition-group>
           </draggable>
           <div class="search-box"><i class="iconfont iconchaxun" style="font-size: 23px"></i><input class="search-input"></input></div>
           <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3">
             <transition-group class="form-list-group form-first-group form-second-group" type="transition" :name="'flip-list'" tag="div">
-              <span class="subj-box" v-for="(ele, ind) in subj_list" :key="ind">
+              <span class="subj-box" @click="clickEle(ele.type)" v-for="(ele, ind) in subj_list" :key="ind">
                   <i class="subj-icon iconfont iconliebiao2">{{ele.title}}</i><i class="iconfont iconlajitongshanchu"></i></span>
             </transition-group>
           </draggable>
@@ -173,6 +173,9 @@ export default {
     checkMove(evt){
       console.log(evt.draggedContext)
       console.log(evt.relatedContext)
+    },
+    clickEle(type){
+      this.sortable_item.push(this.form_list[type]);
     },
     // 克隆表单提交事件
     handleSubmit() {
