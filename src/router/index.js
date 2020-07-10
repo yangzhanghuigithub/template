@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '../views/login/regist'
+import login from '../views/login/login'
+import regist from '../views/login/regist'
+import reset from '../views/login/reset'
 import index from '../components/draggable'
 import render from '../components/render'
 import preview from '../components/preview'
@@ -16,6 +18,14 @@ export const constantRouterMap = [
     path: '/login',
     name: 'login',
     component: login
+  },{
+    path: '/regist',
+    name: 'regist',
+    component: regist
+  },{
+    path: '/reset',
+    name: 'reset',
+    component: reset
   },{
     path: '/render',
     name: 'render',
