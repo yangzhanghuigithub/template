@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '../components/login'
+import login from '../views/login/login'
 import index from '../components/draggable'
 import render from '../components/render'
 import preview from '../components/preview'
