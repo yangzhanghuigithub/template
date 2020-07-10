@@ -109,7 +109,7 @@
           <label>项目注册号</label>
           <el-input class="cont-right" @input="change($event)"
                     placeholder="请输入项目注册号"
-                    v-model="project.registNum"
+                    v-model.trim="project.registNum"
                     clearable>
           </el-input>
         </span>
@@ -349,7 +349,7 @@
           {icon: 'iconsheji', title: '项目设计', isActive: false},
           {icon: 'iconfabu1', title: '项目发布', isActive: false}
         ],
-        fileUploadUrl: process.env.BASE_API + '/base/minio/upload',
+        fileUploadUrl: process.env.BASE_API + '/base/file/upload',
         userToken: {'LRHEALTH-AUTHORIZATION-TOKEN': this.$auth.getToken()},
         dateValue: '',
         pickerOptions: {
@@ -428,28 +428,30 @@
       jumpTab(type, i, j){
         if (type == 1){
           this.saveProj(i, j);
-        }else if(type == 2){
-          this.saveDesi(i, j);
-        }else {
+        }
+        // else if(type == 2){
+        //   this.saveDesi(i, j);
+        // }
+        else {
           this.titleItem[i].isActive = false;
           this.titleItem[j].isActive = true;
         }
       },
       saveProj(i, j){
-        this.project.startDate = this.dateValue[0];
-        this.project.endDate = this.dateValue[1];
-        this.$api.saveProject(this.project).then((data) => {
-          this.project.projId = data.resultData;
-          if (j){
+        // this.project.startDate = this.dateValue[0];
+        // this.project.endDate = this.dateValue[1];
+        // this.$api.saveProject(this.project).then((data) => {
+        //   this.project.projId = data.resultData;
+        //   if (j){
             this.titleItem[i].isActive = false;
             this.titleItem[j].isActive = true;
-          }
-          Message({
-            message: data.resultDesc,
-            type: 'success',
-            duration: 3 * 1000
-          })
-        })
+        //   }
+        //   Message({
+        //     message: data.resultDesc,
+        //     type: 'success',
+        //     duration: 3 * 1000
+        //   })
+        // })
       },
       saveDesi(){
 

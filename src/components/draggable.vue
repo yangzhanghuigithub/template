@@ -1,25 +1,35 @@
 <template>
   <div class="container">
     <i-row>
-      <i-col span="6" class="sortable_container">
-        <Form :label-width="100" class="b-a">
-          <span class="compo">题目元件</span>
-          <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove">
-            <transition-group class="form-list-group form-first-group" type="transition" :name="'flip-list'" tag="div">
-<!--              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>-->
-                <span class="choose-box" @click="clickEle(ele.type)" v-for="(ele, ind) in comp_list" :key="ind">
-                  <i class="choose-icon" :class="ele.icon"></i>{{ele.title}}</span>
-            </transition-group>
-          </draggable>
-          <div class="search-box"><i class="iconfont iconchaxun" style="font-size: 23px"></i><input class="search-input"></input></div>
-          <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3">
-            <transition-group class="form-list-group form-first-group form-second-group" type="transition" :name="'flip-list'" tag="div">
-              <span class="subj-box" @click="clickEle(ele.type)" v-for="(ele, ind) in subj_list" :key="ind">
-                  <i class="subj-icon iconfont iconliebiao2">{{ele.title}}</i><i class="iconfont iconlajitongshanchu"></i></span>
-            </transition-group>
-          </draggable>
-        </Form>
-      </i-col>
+      <span style="margin-left: 10px">
+        <Tabs type="card" style="width: 16%;float: left;display: inline-block;margin: 10px;">
+          <Tab-pane label="标签一">
+            <i-col span="24" class="sortable_container">
+              <Form :label-width="100" class="b-a">
+                <span class="compo">题目元件</span>
+                <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove">
+                  <transition-group class="form-list-group form-first-group" type="transition" :name="'flip-list'" tag="div">
+                    <!--              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>-->
+                    <span class="choose-box" @click="clickEle(ele.type)" v-for="(ele, ind) in comp_list" :key="ind">
+                      <i class="choose-icon" :class="ele.icon"></i>{{ele.title}}
+                    </span>
+                  </transition-group>
+                </draggable>
+                <div class="search-box"><i class="iconfont iconchaxun" style="font-size: 23px"></i><input class="search-input"></input></div>
+                <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3">
+                  <transition-group class="form-list-group form-first-group form-second-group" type="transition" :name="'flip-list'" tag="div" style="margin-bottom: 200px;">
+                    <span class="subj-box" @click="clickEle(ele.type)" v-for="(ele, ind) in subj_list" :key="ind">
+                      <i class="subj-icon iconfont iconliebiao2">{{ele.title}}</i><i class="iconfont iconlajitongshanchu"></i>
+                    </span>
+                  </transition-group>
+                </draggable>
+              </Form>
+            </i-col>
+          </Tab-pane>
+          <Tab-pane label="标签二">标签二的内容</Tab-pane>
+          <Tab-pane label="标签三">标签三的内容</Tab-pane>
+        </Tabs>
+      </span>
       <i-col span="18" class="sortable_item" style="margin-left: -1px;">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
 <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
@@ -367,6 +377,16 @@ export default {
 };
 </script>
 <style>
+  .ivu-tabs-tab:first-child {
+    margin-left: 0.5px;
+  }
+  .ivu-tabs-content {
+    margin-top: -17px;
+    margin-bottom: 300px;
+  }
+  .ivu-tabs-tab {
+    width: 37%;
+  }
   .search-box {
     margin-left: 8%;
     color: gray;
