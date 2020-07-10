@@ -1,5 +1,22 @@
 import request from '../utils/request'
 
+export function sendValiCode(params) {
+  return request({
+    url: '/base/sysUser/sendValiCode',
+    method: 'POST',
+    params: request.adornParams(params)
+  })
+}
+
+export function regist(params) {
+  return request({
+    url: '/base/sysUser/regist',
+    method: 'POST',
+    params: request.adornParams(params)
+  })
+}
+
+
 export function login(params) {
   return request({
     url: '/base/sysUser/login',
