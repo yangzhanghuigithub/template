@@ -41,10 +41,10 @@
     display: inline-block;
   }
   .size14 {
-    font-size: 14px;
+    font-size: 0.8em;
   }
   .size24 {
-    font-size: 24px;
+    font-size: 1.5em;
   }
   .colorff7 {
     color: #FF7000;
@@ -60,5 +60,8 @@
   }
   .color666 {
     color: #666666;
+  }
+  .pointer {
+    cursor: pointer;
   }
 </style>

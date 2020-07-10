@@ -6,24 +6,24 @@
       </div>
       <div class="con-title">
         <span class="title-left">
-          <span class="size24 color222">手机注册</span>
-          <span class="size24 color666 mail">邮箱注册</span>
+          <span class="size24 mail" :class="type == 1 ? 'color222' : 'color666'" @click="jumpRegi(1)">手机注册</span>
+          <span class="size24 mail" :class="type == 2 ? 'color222' : 'color666'" @click="jumpRegi(2)">邮箱注册</span>
         </span>
         <span>
           <span class="size14 color444">已有账号,</span>
-          <span class="size14 colorff7">马上登陆</span>
+          <span class="size14 colorff7 pointer">马上登陆</span>
         </span>
       </div>
       <div class="con-content">
         <div class="reg-center">
           <div class="form-item">
-            <label>手机号码</label>
-            <el-input placeholder="请输入手机号" v-model="user.mobile" :disabled="false"></el-input>
+            <label>{{type == 1 ? "手机号码" : "邮箱号"}}</label>
+            <el-input :placeholder="type == 1 ? '请输入手机号' : '请输入邮箱号'" v-model="user.mobile" :disabled="false"></el-input>
           </div>
           <div class="form-item">
             <label>验证码</label>
             <span style="display: flex">
-              <el-input placeholder="请输入手机验证码" style="margin-right: 20px;margin-left: -8px;" v-model="user.validCode" :disabled="false"></el-input>
+              <el-input :placeholder="type == 1 ? '请输入手机验证码' : '请输入邮箱验证码'" style="margin-right: 20px;margin-left: -7px;" v-model="user.validCode" :disabled="false"></el-input>
               <el-button type="warning" @click="sendValidCode">获取验证码</el-button>
             </span>
           </div>
@@ -54,7 +54,8 @@
     data() {
       return {
         user: {},
-        checked: false
+        checked: false,
+        type: 1
       }
     },
     methods: {
@@ -76,12 +77,18 @@
           })
           this.$router.push("/login")
         })
+      },
+      jumpRegi(type){
+        this.type = type;
       }
     }
   }
 </script>
 
 <style scoped>
+  .title-left {
+    width: 50%;
+  }
   .con-footer {
     margin-top: 33px;
   }
@@ -90,7 +97,7 @@
     height:40px;
     background:rgba(53,115,185,1);
     border-radius:4px;
-    margin-top: 32px;
+    margin-top: 5%;
   }
   label {
     width: 20%;
@@ -102,41 +109,41 @@
     align-items: center;
   }
   .reg-center {
-    margin: 36px;
+    margin: 25px;
     width: 370px;
   }
 
   .mail {
-    margin-left: 52px;
+    margin-right: 2.5%;
   }
 
   .con-title {
-    width: 800px;
-    margin-top: 163px;
+    width: 42%;
+    margin-top:6%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
   .con-content {
-    margin-top: 29px;
+    margin-top: 20px;
     background-color: #FFFFFF;
-    width: 800px;
-    height: 380px;
+    width: 42%;
+    height: 60%;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
 
   .regi-logo {
-    margin-left: 361px;
-    height: 43px;
+    margin-left: 18.75%;
+    height: 70%;
     align-self: center;
   }
 
   .reg-title {
     width: 100%;
-    height: 80px;
+    height: 7.4%;
     background-color: #3573B9;
     display: flex;
   }
