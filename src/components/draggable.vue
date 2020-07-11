@@ -39,10 +39,10 @@
               </renders>
             </transition-group>
           </draggable>
-          <FormItem>
+          <div style="display: flex; flex-direction: row;justify-content: center;margin-bottom: 30px">
             <Button type="primary" @click="handleSubmit()">预览</Button>
             <Button type="ghost" @click="handleReset()" style="margin-left: 8px">重置</Button>
-          </FormItem>
+          </div>
         </Form>
       </i-col>
       <Modal v-model="showModal" :title="'配置' + modalFormData.modalTitle + '属性'" :mask-closable="false">
@@ -321,6 +321,7 @@ export default {
     // 拖拽表单2
     dragOptions2() {
       return {
+        handle: ".handle",
         animation: 0,
         ghostClass: "ghost",
         group: {
@@ -377,6 +378,25 @@ export default {
 };
 </script>
 <style>
+  .ivu-tabs-nav {
+    width: 100% !important;
+  }
+  .handle {
+    float: left;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .ivu-form-item-content {
+    margin-left: 0px !important;
+  }
+  .iconbox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .contentbox {
+    border: 1px solid red;
+  }
   .ivu-tabs-tab:first-child {
     margin-left: 0.5px;
   }
@@ -384,7 +404,7 @@ export default {
     margin-top: -17px;
   }
   .ivu-tabs-tab {
-    width: 36.5%;
+    width: 32.4%;
   }
   .search-box {
     margin-left: 8%;
@@ -482,7 +502,7 @@ export default {
 
   .items,
   .items * {
-    cursor: move;
+    /*cursor: move;*/
   }
 
   /* 配置按钮默认位置 */
@@ -500,6 +520,16 @@ export default {
   }
 
   /* form控件下配置按钮位置 */
+
+  .ivu-form-item {
+    width: 100% !important;
+    margin-bottom: 0px;
+    display: flex !important;
+    flex-direction: column;
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid darkgray;
+  }
 
   .ivu-form-item.items .item-icon {
     top: -25px;
@@ -529,6 +559,10 @@ export default {
 
   .ivu-form-item-required .ivu-form-item-label:before {
     content: '';
+  }
+
+  .ivu-form .ivu-form-item-label {
+    text-align: left;
   }
 
   .items.sortable-items-required .ivu-form-item-label:before {

@@ -7,6 +7,7 @@ import text from './control/Text';
 import cascader from './control/Cascader';
 import title from './control/Title';
 import hr from './control/Hr';
+import icon from './control/Icon';
 import p from './control/P';
 import uploads from './control/Uploads';
 import datepicker from './control/DatePicker';
@@ -27,6 +28,7 @@ const form_item = {
   address,
   uploads,
   text,
+  icon
 };
 
 const displayControl = (_self, sortableItem, name, value) => {
@@ -61,6 +63,7 @@ export default {
     const item_icon = this.configIcon && this.obj.config ? ItemIcon(this, h) : [];
     // 已被绑定name,且require为必填,视为校验字段
     const validate = !!this.obj.name && !!this.obj.require;
+    const icon = form_item['icon'](this, h);
     // 非 Title Hr P 需要FormItem
     if (['title', 'hr', 'p'].indexOf((this.ele.toLowerCase())) < 0) {
       // 关联的组件判断是否展示
@@ -102,10 +105,12 @@ export default {
           width: this.obj.inlineBlock ? '33%' : 'auto',
         }
       };
-      return h(
+      return h("div",{
+        class: {"iconbox": true}
+      },[icon ,h(
         "FormItem", FormItem,
         arr.concat(item_icon)
-      );
+      )]);
     } else {
       return h(
         "div", {
@@ -113,10 +118,11 @@ export default {
             'position': 'relative'
           },
           class: {
-            items: true
+            items: true,
+            contentbox: true
           },
         },
-        arr.concat(item_icon)
+        icon.concat(arr.concat(item_icon))
       );
     }
   },

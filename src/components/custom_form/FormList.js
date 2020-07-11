@@ -10,6 +10,7 @@ import { pConf } from "./control/P";
 import { uploadsConf } from './control/Uploads';
 import { datePickerConf } from './control/DatePicker'
 import { addressConf } from './control/Address';
+import { iconConf } from './control/Icon';
 
 const formList = {
   title: titleConf,
@@ -24,6 +25,7 @@ const formList = {
   address: addressConf,
   uploads: uploadsConf,
   text: textConf,
+  icon: iconConf
 };
 let list_arr = [];
 for (let i in formList) {
