@@ -18,7 +18,7 @@
         <div class="reg-center">
           <div class="form-item">
             <label>{{type == 1 ? "手机号码" : "邮箱号"}}</label>
-            <el-input :placeholder="type == 1 ? '请输入手机号' : '请输入邮箱号'" v-model="user.mobile" :disabled="false"></el-input>
+            <el-input :placeholder="type == 1 ? '请输入手机号' : '请输入邮箱号'" v-model="mobile" :disabled="false"></el-input>
           </div>
           <div class="form-item">
             <label>验证码</label>
@@ -55,12 +55,13 @@
       return {
         user: {},
         checked: false,
-        type: 1
+        type: 1,
+        mobile: ''
       }
     },
     methods: {
       sendValidCode(){
-        this.$api.sendValiCode(this.user).then((data) => {
+        this.$api.sendValiCode({'mobile': this.mobile}).then((data) => {
           Message({
             message: "获取验证码成功",
             type: 'success',
