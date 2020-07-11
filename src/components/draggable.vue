@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <i-row>
-      <span style="margin-left: 10px">
-        <Tabs type="card" style="width: 16%;float: left;display: inline-block;margin: 10px;">
+      <span>
+        <Tabs type="card" style="width: 25%;float: left;display: inline-block;margin: 10px;">
           <Tab-pane label="标签一">
             <i-col span="24" class="sortable_container">
               <Form :label-width="100" class="b-a">
@@ -30,7 +30,7 @@
           <Tab-pane label="标签三">标签三的内容</Tab-pane>
         </Tabs>
       </span>
-      <i-col span="18" class="sortable_item" style="margin-left: -1px;">
+      <i-col span="18" class="sortable_item" style="margin-left: -1px;width: 73%">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
 <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
           <draggable :list="sortable_item" :options="dragOptions2">
@@ -382,10 +382,9 @@ export default {
   }
   .ivu-tabs-content {
     margin-top: -17px;
-    margin-bottom: 300px;
   }
   .ivu-tabs-tab {
-    width: 37%;
+    width: 36.5%;
   }
   .search-box {
     margin-left: 8%;
