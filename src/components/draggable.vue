@@ -394,9 +394,6 @@ export default {
     align-items: center;
     margin-bottom: 24px;
   }
-  .contentbox {
-    border: 1px solid red;
-  }
   .ivu-tabs-tab:first-child {
     margin-left: 0.5px;
   }

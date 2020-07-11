@@ -12,8 +12,10 @@ import p from './control/P';
 import uploads from './control/Uploads';
 import datepicker from './control/DatePicker';
 import address from './control/Address';
+import drag from './control/drag';
 
 import trigger from './config/trigger';
+import draggable from "vuedraggable";
 
 const form_item = {
   title,
@@ -28,7 +30,8 @@ const form_item = {
   address,
   uploads,
   text,
-  icon
+  icon,
+  drag
 };
 
 const displayControl = (_self, sortableItem, name, value) => {
@@ -64,6 +67,7 @@ export default {
     // 已被绑定name,且require为必填,视为校验字段
     const validate = !!this.obj.name && !!this.obj.require;
     const icon = form_item['icon'](this, h);
+    const drag = form_item['drag'](this, h);
     // 非 Title Hr P 需要FormItem
     if (['title', 'hr', 'p'].indexOf((this.ele.toLowerCase())) < 0) {
       // 关联的组件判断是否展示
@@ -119,7 +123,7 @@ export default {
           },
           class: {
             items: true,
-            contentbox: true
+            iconbox: true
           },
         },
         icon.concat(arr.concat(item_icon))
