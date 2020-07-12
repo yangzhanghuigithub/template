@@ -182,7 +182,6 @@
           {name: '题组名称',list: []},
           {name: '题组名称',list: []},
           {name: '题组名称',list: []},
-          {name: '题组名称',list: []},
         ],
         form_list: form_list,
         comp_list: [
