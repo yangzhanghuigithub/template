@@ -46,7 +46,7 @@
                   <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
                   <draggable class="dragbox"  :list="ele.list" :options="dragOptions2" @end="dragEnd()">
                     <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
-                      <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
+                      <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle(ind, index)" @changeVisibility="changeVisibility"
                                v-for="(element,index) in ele.list" :key="index" :index="index" :ele="element.ele"
                                :obj="element.obj || {}" :data="formData"
                                @handleChangeVal="val => handleChangeVal(val,element)"
@@ -308,8 +308,8 @@
         }, 500)
       },
       // 显示modal,配置被克隆控件
-      confEle(index) {
-        const list_temp = Object.assign({}, this.sortable_item[index]);
+      confEle(ind,index) {
+        const list_temp = Object.assign({}, this.sortable_item1[ind].list[index]);
         for (let i in list_temp.obj) {
           this.modalFormData[i] = list_temp.obj[i];
         }
