@@ -40,18 +40,21 @@
           <draggable :list="sortable_item1" :options="dragOptions4" @end="dragEnd()">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <div v-for="(ele, ind) in sortable_item1" :key="ind"
-                   style="display: flex;align-items: center;margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.length > 0}">
-                <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
-                <draggable class="dragbox"  :list="ele" :options="dragOptions2" @end="dragEnd()">
-                  <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
-                    <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
-                             v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
-                             :obj="element.obj || {}" :data="formData"
-                             @handleChangeVal="val => handleChangeVal(val,element)"
-                             :sortableItem="ele" :config-icon="true">
-                    </renders>
-                  </transition-group>
-                </draggable>
+                   style="margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.length > 0}">
+                <label style="font-weight: bold;margin-left: 38px" v-show="ele.length > 0">题组名称</label>
+                <div style="display: flex;align-items: center;">
+                  <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
+                  <draggable class="dragbox"  :list="ele" :options="dragOptions2" @end="dragEnd()">
+                    <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
+                      <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
+                               v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
+                               :obj="element.obj || {}" :data="formData"
+                               @handleChangeVal="val => handleChangeVal(val,element)"
+                               :sortableItem="ele" :config-icon="true">
+                      </renders>
+                    </transition-group>
+                  </draggable>
+                </div>
               </div>
             </transition-group>
           </draggable>
@@ -327,8 +330,9 @@
         this.sortable_item1 = this.sortable_item1.filter(function (s) {
           return s.length > 0;
         });
-        for (let i = 0; i < 5 - this.sortable_item1.length; i++) {
-          console.log(i)
+        let len = this.sortable_item1.length;
+        for (let i = 0; i < (5 - len); i++) {
+          console.log(this.sortable_item1.length)
           this.sortable_item1.push([]);
         }
       }
@@ -447,6 +451,7 @@
 <style>
   .hasItem {
     background-color: lightgray;
+    padding-top: 10px;
   }
 
   .dragbox {
@@ -588,7 +593,7 @@
 
   .form-list-group {
     min-height: 65px;
-    padding: 20px;
+    padding: 5px 20px 10px 10px;
   }
 
   /* 设置items下所有鼠标样式为 move */
