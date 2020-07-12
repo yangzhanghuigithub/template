@@ -9,7 +9,7 @@ export default (_self, h) => {
       },
       style: {
         "font-size": "30px",
-        "color": "lightgray",
+        "color": "gray",
         "cursor": "move"
       }
     })

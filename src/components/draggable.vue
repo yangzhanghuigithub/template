@@ -33,10 +33,20 @@
       <i-col span="18" class="sortable_item" style="margin-left: -1px;width: 73%">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
 <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
-          <draggable :list="sortable_item" :options="dragOptions2">
+          <draggable :list="sortable_item1" :options="dragOptions4">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
-              <renders @handleRemoveEle="removeEle" @handleConfEle="confEle" @changeVisibility="changeVisibility" v-for="(element,index) in sortable_item" :key="index" :index="index" :ele="element.ele" :obj="element.obj || {}" :data="formData" @handleChangeVal="val => handleChangeVal(val,element)" :sortableItem="sortable_item" :config-icon="true">
-              </renders>
+              <div v-for="(ele, ind) in sortable_item1" :key="ind" style="display: flex;align-items: center;margin-top: 10px;">
+                <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray"></i>
+                <draggable class="dragbox" :class="{'hasItem' : ele.length > 0}" :list="ele" :options="dragOptions2">
+                  <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
+                    <renders @handleRemoveEle="removeEle" @handleConfEle="confEle" @changeVisibility="changeVisibility"
+                             v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
+                             :obj="element.obj || {}" :data="formData" @handleChangeVal="val => handleChangeVal(val,element)"
+                             :sortableItem="ele" :config-icon="true">
+                    </renders>
+                  </transition-group>
+                </draggable>
+              </div>
             </transition-group>
           </draggable>
           <div style="display: flex; flex-direction: row;justify-content: center;margin-bottom: 30px">
@@ -144,6 +154,7 @@ export default {
   },
   data() {
     return {
+      sortable_item1: [[], [], [], [], []],
       form_list: form_list,
       comp_list:[
         {icon: 'iconfont iconyonghuqun',type: 0, title: '标题'},
@@ -167,7 +178,6 @@ export default {
         {type: 3, ind: 4, title: '籍贯'},
         {type: 5, ind: 5, title: '婚姻'}
       ],
-      sortable_item: [],
       showModal: false,
       // 深拷贝对象，防止默认空对象被更改
       // 颜色选择器bug，对象下color不更新
@@ -185,7 +195,13 @@ export default {
       console.log(evt.relatedContext)
     },
     clickEle(type){
-      this.sortable_item.push(this.form_list[type]);
+      let flag = true;
+      this.sortable_item1.forEach((ele, ind) => {
+        if (ele.length < 1 && flag){
+          this.sortable_item1[ind].push(this.form_list[type]);
+          flag = false;
+        }
+      });
     },
     // 克隆表单提交事件
     handleSubmit() {
@@ -200,7 +216,7 @@ export default {
     },
     // 清空克隆表单
     handleReset() {
-      this.sortable_item = [];
+      this.sortable_item = [[], [], [], [], []];
     },
     // modal内数据字典选项发生改变触发事件
     handleDataDictChange(val) {
@@ -325,9 +341,25 @@ export default {
         animation: 0,
         ghostClass: "ghost",
         group: {
+          name: "combine",
           // 只允许放置shared的控件,禁止pull
-          put: ["shared", "library"]
+          put: ["shared", "library", "combine"]
         }
+      };
+    },
+    // 拖拽表单4
+    dragOptions4() {
+      return {
+        handle: ".handle",
+        animation: 0,
+        ghostClass: "ghost",
+        group: {
+          name: "combinebox",
+          // 只允许放置shared的控件,禁止pull
+          pull: false,
+          put: ["combine", "combinebox"]
+        },
+        sort: true
       };
     },
     // 拖拽表单1
@@ -378,6 +410,12 @@ export default {
 };
 </script>
 <style>
+  .hasItem {
+    background-color: lightgray;
+  }
+  .dragbox {
+    width: 100%;
+  }
   .ivu-tabs-nav {
     width: 100% !important;
   }
@@ -392,7 +430,6 @@ export default {
   .iconbox{
     display: flex;
     align-items: center;
-    margin-bottom: 24px;
   }
   .ivu-tabs-tab:first-child {
     margin-left: 0.5px;
@@ -427,6 +464,7 @@ export default {
     line-height: 30px;
     cursor: move;
     border-bottom: 1px solid darkgray;
+    margin-top: 10px;
   }
   .subj-icon {
     font-size: 18px;
@@ -459,6 +497,7 @@ export default {
     height: 25px;
     line-height: 25px;
     text-align: center;
+    margin-bottom: 20px;
   }
   .inline {
     display: inline-block;
@@ -491,7 +530,7 @@ export default {
   }
 
   .form-list-group {
-    min-height: 200px;
+    min-height: 65px;
     padding: 20px;
   }
 
