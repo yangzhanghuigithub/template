@@ -290,9 +290,10 @@
       },
       // modal点击确定执行事件
       handleOk() {
+        const ind = this.modalFormData.listInd;
         const index = this.modalFormData.listIndex;
-        this.sortable_item[index].obj = Object.assign({},
-          this.sortable_item[index].obj,
+        this.sortable_item1[ind].list[index].obj = Object.assign({},
+          this.sortable_item1[ind].list[index].obj,
           this.modalFormData
         );
         this.handleCancel();
@@ -315,6 +316,7 @@
         }
         // 配置项中未找到color，删除modalFormData中自带color属性
         if (!list_temp.obj['color']) delete this.modalFormData.color;
+        this.modalFormData.listInd = ind;
         // 设置被配置控件的index，便于完成配置找到相应对象赋值
         this.modalFormData.listIndex = index;
         // Vue 不能检测到对象属性的添加或删除
