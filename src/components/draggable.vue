@@ -496,16 +496,13 @@
     margin-bottom: 10px;
   }
 
-  .ivu-tabs-tab:first-child {
-    margin-left: 0.5px;
-  }
-
   .ivu-tabs-content {
     margin-top: -17px;
   }
 
   .ivu-tabs-tab {
     width: 32.4%;
+    text-align: center;
   }
 
   .search-box {
