@@ -40,11 +40,11 @@
           <draggable :list="sortable_item1" :options="dragOptions4">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <div v-for="(ele, ind) in sortable_item1" :key="ind"
-                   style="display: flex;align-items: center;margin-top: 10px;">
-                <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray"></i>
-                <draggable class="dragbox" :class="{'hasItem' : ele.length > 0}" :list="ele" :options="dragOptions2">
+                   style="display: flex;align-items: center;margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.length > 0}">
+                <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
+                <draggable class="dragbox"  :list="ele" :options="dragOptions2">
                   <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
-                    <renders @handleRemoveEle="removeEle" @handleConfEle="confEle" @changeVisibility="changeVisibility"
+                    <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
                              v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
                              :obj="element.obj || {}" :data="formData"
                              @handleChangeVal="val => handleChangeVal(val,element)"
@@ -305,16 +305,16 @@
         this.showModal = true;
       },
       // 删除克隆控件
-      removeEle(index) {
-        let name = this.sortable_item[index].obj.name;
-        this.sortable_item.splice(index, 1);
+      removeEle(ind, index) {
+        let name = this.sortable_item1[ind][index].obj.name;
+        this.sortable_item1[ind].splice(index, 1);
         if (!name) return;
-        for (let i in this.sortable_item) {
+        for (let i in this.sortable_item1[ind]) {
           // 当relation为true并且关联字段被确认
-          if (this.sortable_item[i].obj.relation && this.sortable_item[i].obj.relation_name === name) {
-            this.$set(this.sortable_item[i].obj, "relation", false);
-            this.$set(this.sortable_item[i].obj, "relation_name", "");
-            this.$set(this.sortable_item[i].obj, "relation_value", "");
+          if (this.sortable_item1[ind][i].obj.relation && this.sortable_item1[ind][i].obj.relation_name === name) {
+            this.$set(this.sortable_item1[ind][i].obj, "relation", false);
+            this.$set(this.sortable_item1[ind][i].obj, "relation_name", "");
+            this.$set(this.sortable_item1[ind][i].obj, "relation_value", "");
             break;
           }
         }
@@ -383,7 +383,7 @@
             name: "combinebox",
             // 只允许放置shared的控件,禁止pull
             pull: false,
-            put: ["combine", "combinebox"]
+            put: ["combinebox"]
           },
           sort: true
         };
@@ -461,6 +461,10 @@
   .iconbox {
     display: flex;
     align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 10px;
   }
 
   .ivu-tabs-tab:first-child {
