@@ -125,7 +125,7 @@
     margin-top: 20px;
     background-color: #FFFFFF;
     width: 42%;
-    height: 60%;
+    height: 55%;
     display: flex;
     flex-direction: row;
     justify-content: center;
