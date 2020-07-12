@@ -61,7 +61,7 @@
     },
     methods: {
       sendValidCode(){
-        this.$api.sendValiCode(user).then((data) => {
+        this.$api.sendValiCode(this.user).then((data) => {
           Message({
             message: "获取验证码成功",
             type: 'success',
