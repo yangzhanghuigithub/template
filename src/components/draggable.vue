@@ -7,7 +7,7 @@
             <i-col span="24" class="sortable_container">
               <Form :label-width="100" class="b-a">
                 <span class="compo">题目元件</span>
-                <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove">
+                <draggable :clone="cloneData" :list="comp_list" :options="dragOptions1" :move="checkMove" @end="dragEnd">
                   <transition-group class="form-list-group form-first-group" type="transition" :name="'flip-list'"
                                     tag="div">
                     <!--              <renders v-for="(element,index) in form_list" :key="index" :ele="element.ele" :obj="element.obj || {}"></renders>-->
@@ -18,7 +18,7 @@
                 </draggable>
                 <div class="search-box"><i class="iconfont iconchaxun" style="font-size: 23px"></i><input
                   class="search-input"></input></div>
-                <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3">
+                <draggable :clone="cloneData" :list="subj_list" :options="dragOptions3"  @end="dragEnd">
                   <transition-group class="form-list-group form-first-group form-second-group" type="transition"
                                     :name="'flip-list'" tag="div" style="margin-bottom: 200px;">
                     <span class="subj-box" @click="clickEle(ele.type)" v-for="(ele, ind) in subj_list" :key="ind">
@@ -37,12 +37,12 @@
       <i-col span="18" class="sortable_item" style="margin-left: -1px;width: 73%">
         <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
           <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
-          <draggable :list="sortable_item1" :options="dragOptions4">
+          <draggable :list="sortable_item1" :options="dragOptions4" @end="dragEnd()">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <div v-for="(ele, ind) in sortable_item1" :key="ind"
                    style="display: flex;align-items: center;margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.length > 0}">
                 <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
-                <draggable class="dragbox"  :list="ele" :options="dragOptions2">
+                <draggable class="dragbox"  :list="ele" :options="dragOptions2" @end="dragEnd()">
                   <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
                     <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
                              v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
@@ -210,8 +210,8 @@
     },
     methods: {
       checkMove(evt) {
-        console.log(evt.draggedContext)
-        console.log(evt.relatedContext)
+        // console.log(evt.draggedContext)
+        // console.log(evt.relatedContext)
       },
       clickEle(type) {
         let flag = true;
@@ -231,7 +231,7 @@
       },
       // 克隆表单提交事件
       handleSubmit() {
-        localStorage.setItem('template_form', JSON.stringify(this.sortable_item
+        localStorage.setItem('template_form', JSON.stringify(this.sortable_item1
           // .filter(
           //   v => {
           //     return !!v.obj.name
@@ -322,6 +322,15 @@
       // 更改当前渲染字段是否显示
       changeVisibility(index, visibility) {
         this.$set(this.sortable_item[index].obj, 'visibility', visibility);
+      },
+      dragEnd(){
+        this.sortable_item1 = this.sortable_item1.filter(function (s) {
+          return s.length > 0;
+        });
+        for (let i = 0; i < 5 - this.sortable_item1.length; i++) {
+          console.log(i)
+          this.sortable_item1.push([]);
+        }
       }
     },
     watch: {
