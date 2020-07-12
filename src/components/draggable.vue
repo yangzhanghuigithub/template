@@ -242,7 +242,7 @@
       },
       // 清空克隆表单
       handleReset() {
-        this.sortable_item = [[], [], [], [], []];
+        this.sortable_item1 = [[], [], [], [], []];
       },
       // modal内数据字典选项发生改变触发事件
       handleDataDictChange(val) {
