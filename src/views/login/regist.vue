@@ -6,24 +6,26 @@
       </div>
       <div class="con-title">
         <span class="title-left">
-          <span class="size24 mail" :class="type == 1 ? 'color222' : 'color666'" @click="jumpRegi(1)">手机注册</span>
-          <span class="size24 mail" :class="type == 2 ? 'color222' : 'color666'" @click="jumpRegi(2)">邮箱注册</span>
+          <span class="size24 mail" :class="user.registType == 1 ? 'color222' : 'color666'" @click="jumpRegi(1)">手机注册</span>
+          <span class="size24 mail" :class="user.registType == 2 ? 'color222' : 'color666'" @click="jumpRegi(2)">邮箱注册</span>
         </span>
         <span>
           <span class="size14 color444">已有账号,</span>
-          <span class="size14 colorff7 pointer">马上登陆</span>
+          <span class="size14 colorff7 pointer" @click="$router.push('/login')">马上登陆</span>
         </span>
       </div>
       <div class="con-content">
         <div class="reg-center">
           <div class="form-item">
-            <label>{{type == 1 ? "手机号码" : "邮箱号"}}</label>
-            <el-input :placeholder="type == 1 ? '请输入手机号' : '请输入邮箱号'" v-model="mobile" :disabled="false"></el-input>
+            <label>{{user.registType == 1 ? "手机号码" : "邮箱号"}}</label>
+            <el-input v-show="user.registType == 1" placeholder="请输入手机号" v-model="user.mobile" :disabled="false"></el-input>
+            <el-input v-show="user.registType == 2" placeholder="请输入邮箱号" v-model="user.email" :disabled="false"></el-input>
           </div>
           <div class="form-item">
             <label>验证码</label>
             <span style="display: flex">
-              <el-input :placeholder="type == 1 ? '请输入手机验证码' : '请输入邮箱验证码'" style="margin-right: 20px;margin-left: -7px;" v-model="user.validCode" :disabled="false"></el-input>
+              <el-input v-show="user.registType == 1" placeholder="请输入手机验证码" style="margin-right: 20px;margin-left: -7px;" v-model="user.smsValidCode" :disabled="false"></el-input>
+              <el-input v-show="user.registType == 2" placeholder="请输入邮箱验证码" style="margin-right: 20px;margin-left: -7px;" v-model="user.mailValidCode" :disabled="false"></el-input>
               <el-button type="warning" @click="sendValidCode">获取验证码</el-button>
             </span>
           </div>
@@ -53,15 +55,13 @@
     name: "retist",
     data() {
       return {
-        user: {},
-        checked: false,
-        type: 1,
-        mobile: ''
+        user: {"registType" : 1},
+        checked: false
       }
     },
     methods: {
       sendValidCode(){
-        this.$api.sendValiCode({'mobile': this.mobile}).then((data) => {
+        this.$api.sendValiCode(user).then((data) => {
           Message({
             message: "获取验证码成功",
             type: 'success',
@@ -72,7 +72,7 @@
       toRegist(){
         this.$api.regist(this.user).then((data) => {
           Message({
-            message: "注册成功,请登录",
+            message: data.resultData,
             type: 'success',
             duration: 3 * 1000
           })
@@ -80,7 +80,7 @@
         })
       },
       jumpRegi(type){
-        this.type = type;
+        this.user.registType = type;
       }
     }
   }

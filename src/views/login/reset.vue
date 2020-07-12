@@ -10,7 +10,7 @@
           <span class="size24 mail" :class="type == 2 ? 'color222' : 'color666'" @click="jumpRegi(2)">邮箱重置</span>
         </span>
         <span style="height: 100%;display: flex;align-items: center">
-          <span class="size14 colorff7 pointer" @click="backLogin">返回登陆>></span>
+          <span class="size14 colorff7 pointer" @click="$router.push('/login')">返回登陆>></span>
         </span>
       </div>
       <div class="con-content">
@@ -55,9 +55,6 @@
       }
     },
     methods: {
-      backLogin(){
-        this.$router.push("/login");
-      },
       sendValidCode(){
         this.$api.sendValiCode(this.user).then((data) => {
           Message({
