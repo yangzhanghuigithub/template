@@ -40,17 +40,17 @@
           <draggable :list="sortable_item1" :options="dragOptions4" @end="dragEnd()">
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <div v-for="(ele, ind) in sortable_item1" :key="ind"
-                   style="margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.length > 0}">
-                <label style="font-weight: bold;margin-left: 38px" v-show="ele.length > 0">题组名称</label>
+                   style="margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.list.length > 0}">
+                <label style="font-weight: bold;margin-left: 38px" v-show="ele.list.length > 0">题组名称</label>
                 <div style="display: flex;align-items: center;">
                   <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
-                  <draggable class="dragbox"  :list="ele" :options="dragOptions2" @end="dragEnd()">
+                  <draggable class="dragbox"  :list="ele.list" :options="dragOptions2" @end="dragEnd()">
                     <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
                       <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle" @changeVisibility="changeVisibility"
-                               v-for="(element,index) in ele" :key="index" :index="index" :ele="element.ele"
+                               v-for="(element,index) in ele.list" :key="index" :index="index" :ele="element.ele"
                                :obj="element.obj || {}" :data="formData"
                                @handleChangeVal="val => handleChangeVal(val,element)"
-                               :sortableItem="ele" :config-icon="true">
+                               :sortableItem="ele.list" :config-icon="true">
                       </renders>
                     </transition-group>
                   </draggable>
@@ -176,7 +176,14 @@
     },
     data() {
       return {
-        sortable_item1: [[], [], [], [], []],
+        sortable_item1: [
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+        ],
         form_list: form_list,
         comp_list: [
           {icon: 'iconfont iconyonghuqun', type: 0, title: '标题'},
@@ -219,8 +226,8 @@
       clickEle(type) {
         let flag = true;
         this.sortable_item1.forEach((ele, ind) => {
-          if (ele.length < 1 && flag) {
-            this.sortable_item1[ind].push(this.form_list[type]);
+          if (ele.list.length < 1 && flag) {
+            this.sortable_item1[ind].list.push(this.form_list[type]);
             flag = false;
           }
         });
@@ -245,7 +252,14 @@
       },
       // 清空克隆表单
       handleReset() {
-        this.sortable_item1 = [[], [], [], [], []];
+        this.sortable_item1 = [
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+          {name: '题组名称',list: []},
+        ];
       },
       // modal内数据字典选项发生改变触发事件
       handleDataDictChange(val) {
@@ -309,18 +323,20 @@
       },
       // 删除克隆控件
       removeEle(ind, index) {
-        let name = this.sortable_item1[ind][index].obj.name;
-        this.sortable_item1[ind].splice(index, 1);
+        let name = this.sortable_item1[ind].list[index].obj.name;
+        this.sortable_item1[ind].list.splice(index, 1);
+        this.dragEnd();
         if (!name) return;
-        for (let i in this.sortable_item1[ind]) {
+        for (let i in this.sortable_item1[ind].list) {
           // 当relation为true并且关联字段被确认
-          if (this.sortable_item1[ind][i].obj.relation && this.sortable_item1[ind][i].obj.relation_name === name) {
-            this.$set(this.sortable_item1[ind][i].obj, "relation", false);
-            this.$set(this.sortable_item1[ind][i].obj, "relation_name", "");
-            this.$set(this.sortable_item1[ind][i].obj, "relation_value", "");
+          if (this.sortable_item1[ind].list[i].obj.relation && this.sortable_item1[ind].list[i].obj.relation_name === name) {
+            this.$set(this.sortable_item1[ind].list[i].obj, "relation", false);
+            this.$set(this.sortable_item1[ind].list[i].obj, "relation_name", "");
+            this.$set(this.sortable_item1[ind].list[i].obj, "relation_value", "");
             break;
           }
         }
+        this.dragEnd();
       },
       // 更改当前渲染字段是否显示
       changeVisibility(index, visibility) {
@@ -328,12 +344,11 @@
       },
       dragEnd(){
         this.sortable_item1 = this.sortable_item1.filter(function (s) {
-          return s.length > 0;
+          return s.list.length > 0;
         });
         let len = this.sortable_item1.length;
         for (let i = 0; i < (5 - len); i++) {
-          console.log(this.sortable_item1.length)
-          this.sortable_item1.push([]);
+          this.sortable_item1.push({name: '题组名称',list: []});
         }
       }
     },
