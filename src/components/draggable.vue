@@ -41,7 +41,7 @@
             <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
               <div v-for="(ele, ind) in sortable_item1" :key="ind"
                    style="margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.list.length > 0}">
-                <label style="font-weight: bold;margin-left: 38px" v-show="ele.list.length > 0">题组名称</label>
+                <label style="font-weight: bold;margin-left: 38px" v-show="ele.list.length > 0">{{ele.name}}</label>
                 <div style="display: flex;align-items: center;">
                   <i class="iconfont iconliebiao2 handle" v-show="ele.length > 0" style="font-size: 30px;color: gray;cursor: move"></i>
                   <draggable class="dragbox"  :list="ele.list" :options="dragOptions2" @end="dragEnd()">
