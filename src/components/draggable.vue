@@ -178,6 +178,7 @@
     },
     data() {
       return {
+        sortable_item: {name: '题组名称',list: []},
         sortable_item1: [
           {name: '题组名称',list: []},
           {name: '题组名称',list: []},
@@ -466,7 +467,7 @@
       this.$http.get('/static/label.json').then(d => {
         this.dataDict = d.data.items;
       });
-      this.sortable_item = JSON.parse(localStorage.getItem('template_form') || '[]');
+      this.sortable_item1 = JSON.parse(localStorage.getItem('template_form') || '[]');
     }
   };
 </script>
