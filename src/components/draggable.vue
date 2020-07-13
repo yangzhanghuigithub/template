@@ -459,6 +459,8 @@
     },
     created() {
       // /static/label.json
+      // this.$store.state.
+      // this.$store.state.
       this.$http.get('/static/label.json').then(d => {
         this.dataDict = d.data.items;
       });

@@ -33,10 +33,10 @@
           <div class="form-item">
             <el-button type="primary" class="registry" @click="toRegist">立即注册</el-button>
           </div>
+          <div class="con-footer">
+            LRhealth-<span class="colorff7">EDC</span>&nbsp;科研服务平台·严谨的全功能&nbsp;EDC
+          </div>
         </div>
-      </div>
-      <div class="con-footer">
-        LRhealth-<span class="colorff7">EDC</span>&nbsp;科研服务平台·严谨的全功能&nbsp;EDC
       </div>
     </div>
   </div>
@@ -87,6 +87,7 @@
   }
   .con-footer {
     margin-top: 33px;
+    text-align: center;
   }
   .registry {
     width:370px;
@@ -125,7 +126,7 @@
     margin-top: 20px;
     background-color: #FFFFFF;
     width: 42%;
-    height: 55%;
+    min-height: 380px;
     display: flex;
     flex-direction: row;
     justify-content: center;
