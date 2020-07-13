@@ -11,6 +11,7 @@ const getters = {
   projectDomain: state => state.global.projectDomain,
   userTokenKey: state => state.global.userTokenKey,
   defaultProjIcon: state => state.global.defaultProjIcon,
-  adminUserKey: state => state.global.adminUserKey
+  adminUserKey: state => state.global.adminUserKey,
+  questionNum: state => state.global.questionNum
 }
 export default getters

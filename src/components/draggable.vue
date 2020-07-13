@@ -459,8 +459,10 @@
     },
     created() {
       // /static/label.json
-      // this.$store.state.
-      // this.$store.state.
+      // let questionNum = this.$store.getters.questionNum;
+      // for (let i = 0; i < questionNum; i++) {
+      //   this.sortable_item1.push(this.sortable_item);
+      // }
       this.$http.get('/static/label.json').then(d => {
         this.dataDict = d.data.items;
       });

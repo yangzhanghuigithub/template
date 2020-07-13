@@ -7,7 +7,9 @@ const global = {
     //项目领域字段类型主键
     projectDomain: 10000000,
     //默认项目图标
-    defaultProjIcon: 'http://yzh:9080/lrhealth/u3201.png'
+    defaultProjIcon: 'http://yzh:9080/lrhealth/u3201.png',
+    //每个crf可以包含的题组数
+    questionNum: 5
   },
 }
 
