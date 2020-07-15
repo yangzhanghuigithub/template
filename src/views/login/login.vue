@@ -1,58 +1,57 @@
 <template>
   <div class="out-box">
+    <uphead class="com-header"></uphead>
     <div class="reg-content">
-      <div class="reg-title">
-        <img class="regi-logo" src="../../static/img/logo.png"/>
-      </div>
-      <div class="con-title">
-        <span class="title-left">
-          <span class="size24 mail" :class="user.registType == 1 ? 'color222' : 'color666'" @click="jumpRegi(1)">手机注册</span>
-          <span class="size24 mail" :class="user.registType == 2 ? 'color222' : 'color666'" @click="jumpRegi(2)">邮箱注册</span>
+      <div class="log-content">
+        <span>
+          <img src="../../static/img/login.png" />
         </span>
         <span>
-          <span class="size14 color444">已有账号,</span>
-          <span class="size14 colorff7 pointer" @click="$router.push('/login')">马上登陆</span>
-        </span>
-      </div>
-      <div class="con-content">
-        <div class="reg-center">
-          <div class="form-item">
-            <label>{{user.registType == 1 ? "手机号码" : "邮箱号"}}</label>
-            <el-input v-show="user.registType == 1" placeholder="请输入手机号" v-model="user.mobile" :disabled="false"></el-input>
-            <el-input v-show="user.registType == 2" placeholder="请输入邮箱号" v-model="user.email" :disabled="false"></el-input>
-          </div>
-          <div class="form-item">
-            <label>验证码</label>
-            <span style="display: flex">
-              <el-input v-show="user.registType == 1" placeholder="请输入手机验证码" style="margin-right: 20px;margin-left: -7px;" v-model="user.smsValidCode" :disabled="false"></el-input>
-              <el-input v-show="user.registType == 2" placeholder="请输入邮箱验证码" style="margin-right: 20px;margin-left: -7px;" v-model="user.mailValidCode" :disabled="false"></el-input>
-              <el-button type="warning" @click="sendValidCode">获取验证码</el-button>
+          <div>
+            <span>
+
+            </span>
+            <span>
+
             </span>
           </div>
-          <div class="form-item">
-            <label>设置密码</label>
-            <el-input placeholder="请设置登陆密码" v-model="user.password" :disabled="false"></el-input>
+          <div>
+            <el-input placeholder="请输入手机号/邮箱" v-model="user.mobile" :disabled="false"></el-input>
           </div>
-          <div class="form-item">
-            <el-checkbox v-model="checked" class="color555">我已阅读并接受&nbsp;<span class="colorff7">用户协议</span>&nbsp;和&nbsp;<span class="colorff7">隐私政策</span></el-checkbox>
+          <div>
+            <el-input placeholder="请输入密码" v-model="user.mobile" :disabled="false"></el-input>
           </div>
-          <div class="form-item">
-            <el-button type="primary" class="registry" @click="toRegist">立即注册</el-button>
+          <div>
+              <el-checkbox v-model="checked" class="color555">自动登录</el-checkbox>
           </div>
-          <div class="con-footer">
-            LRhealth-<span class="colorff7">EDC</span>&nbsp;科研服务平台·严谨的全功能&nbsp;EDC
+          <div>
+              <el-button type="primary">主要按钮</el-button>
           </div>
-        </div>
+          <div>
+              <span>
+                免费注册
+              </span>
+              <span>
+                忘记密码?
+              </span>
+          </div>
+          <div>
+            <div>
+
+            </div>
+          </div>
+        </span>
       </div>
     </div>
-    <foot class="footer"></foot>
+    <dofoot class="com-footer"></dofoot>
   </div>
 </template>
 
 <script>
 
   import {Message} from "element-ui";
-  import foot from '../../components/footer/footer'
+  import dofoot from '../../components/common/footer';
+  import uphead from '../../components/common/header';
 
   export default {
     name: "login",
@@ -87,7 +86,8 @@
       }
     },
     components: {
-      foot
+      uphead,
+      dofoot
     }
   }
 </script>
@@ -143,22 +143,9 @@
     justify-content: center;
   }
 
-  .regi-logo {
-    margin-left: 18.75%;
-    height: 70%;
-    align-self: center;
-  }
-
-  .reg-title {
-    width: 100%;
-    height: 8.3%;
-    background-color: #3573B9;
-    display: flex;
-  }
-
   .reg-content {
     width: 100%;
-    height: 100%;
+    height: 73.2%;
     background-image: url("../../static/img/backgroud.png");
     background-position: bottom;
     background-repeat: no-repeat;

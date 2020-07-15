@@ -40,11 +40,14 @@
     height: 2px;
     display: inline-block;
   }
-  .footer {
-    height: 200px;
+  .com-footer {
+    height: 18.5%;
     display: flex;
     justify-content: center;
     background:rgba(240,240,240,1);
+  }
+  .com-header {
+    height: 8.3%;
   }
   .bold {
     font-weight: bold;

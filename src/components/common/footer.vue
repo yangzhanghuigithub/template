@@ -12,10 +12,10 @@
             <span class="size12">加入我们</span>
           </span>
           <span class="item-box">
-            <span class="color444 size16 bold item-first">关于我们</span>
-            <span class="size12">企业介绍</span>
-            <span class="size12">联系我们</span>
-            <span class="size12">加入我们</span>
+            <span class="color444 size16 bold item-first">快速通道</span>
+            <span class="size12">CRF模板</span>
+            <span class="size12">我的项目</span>
+            <span class="size12">患者列表</span>
           </span>
         </span>
       </div>
