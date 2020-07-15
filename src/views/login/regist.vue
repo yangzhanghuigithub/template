@@ -52,7 +52,7 @@
   import {Message} from "element-ui";
 
   export default {
-    name: "retist",
+    name: "regist",
     data() {
       return {
         user: {"registType" : 1},

@@ -39,20 +39,23 @@
           <div class="form-item">
             <el-button type="primary" class="registry" @click="toRegist">立即注册</el-button>
           </div>
+          <div class="con-footer">
+            LRhealth-<span class="colorff7">EDC</span>&nbsp;科研服务平台·严谨的全功能&nbsp;EDC
+          </div>
         </div>
       </div>
-      <div class="con-footer">
-        LRhealth-<span class="colorff7">EDC</span>&nbsp;科研服务平台·严谨的全功能&nbsp;EDC
-      </div>
     </div>
+    <foot class="footer"></foot>
   </div>
 </template>
 
 <script>
+
   import {Message} from "element-ui";
+  import foot from '../../components/footer/footer'
 
   export default {
-    name: "retist",
+    name: "login",
     data() {
       return {
         user: {"registType" : 1},
@@ -61,7 +64,7 @@
     },
     methods: {
       sendValidCode(){
-        this.$api.sendValiCode(user).then((data) => {
+        this.$api.sendValiCode(this.user).then((data) => {
           Message({
             message: "获取验证码成功",
             type: 'success',
@@ -82,6 +85,9 @@
       jumpRegi(type){
         this.user.registType = type;
       }
+    },
+    components: {
+      foot
     }
   }
 </script>
@@ -92,6 +98,7 @@
   }
   .con-footer {
     margin-top: 33px;
+    text-align: center;
   }
   .registry {
     width:370px;
@@ -120,7 +127,7 @@
 
   .con-title {
     width: 42%;
-    margin-top:6%;
+    margin-top:4%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -130,7 +137,7 @@
     margin-top: 20px;
     background-color: #FFFFFF;
     width: 42%;
-    height: 55%;
+    min-height: 380px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -144,7 +151,7 @@
 
   .reg-title {
     width: 100%;
-    height: 7.4%;
+    height: 8.3%;
     background-color: #3573B9;
     display: flex;
   }

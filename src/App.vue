@@ -40,8 +40,23 @@
     height: 2px;
     display: inline-block;
   }
+  .footer {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    background:rgba(240,240,240,1);
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .size12 {
+    font-size: 12px;
+   }
   .size14 {
     font-size: 0.8em;
+  }
+  .size16 {
+    font-size: 14px;
   }
   .size24 {
     font-size: 1.5em;
@@ -52,11 +67,11 @@
   .color222 {
     color: #222222;
   }
-  .color555 {
-    color: #555555;
-  }
   .color444 {
     color: #444444;
+  }
+  .color555 {
+    color: #555555;
   }
   .color666 {
     color: #666666;
