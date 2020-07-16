@@ -14,6 +14,22 @@
     width: 100%;
     height: 100%;
     margin: 0;
+    background-color: #F0F0F0;
+  }
+  .mr5 {
+    margin-right: 5px;
+  }
+  .ml5 {
+    margin-left: 5px;
+  }
+  .ml10 {
+    margin-left: 10px;
+  }
+  .mt20 {
+    margin-top: 20px;
+  }
+  .mt10 {
+    margin-top: 10px;
   }
   /*页面边样式*/
   .page {
@@ -46,6 +62,18 @@
     justify-content: center;
     background:rgba(240,240,240,1);
   }
+  .white-button {
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(53,115,185,1);
+    border-radius:4px;
+  }
+  .blue-button {
+    background:rgba(53,115,185,1);
+    border-radius:4px;
+  }
+  .headImg {
+    height: 14px;
+  }
   .com-header {
     height: 8.3%;
   }
@@ -59,10 +87,19 @@
     font-size: 0.8em;
   }
   .size16 {
-    font-size: 14px;
+    font-size: 16px;
+  }
+  .size20 {
+    font-size: 20px;
   }
   .size24 {
     font-size: 1.5em;
+  }
+  .color357{
+    color: #3573B9;
+  }
+  .colorfff {
+    color: #FFFFFF;
   }
   .colorff7 {
     color: #FF7000;

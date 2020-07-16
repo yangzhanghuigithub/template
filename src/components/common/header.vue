@@ -1,14 +1,16 @@
 <template>
   <div class="reg-title">
-    1111111
-    <img class="regi-logo" src="../../static/img/logo.png"/>
+    <img class="regi-logo" :class="{'pro-content': content}" src="../../static/img/logo.png" style="border: none"/>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "header"
-    }
+  export default {
+    name: "header",
+    props: {
+       content: true
+    },
+  }
 </script>
 
 <style scoped>
@@ -22,5 +24,9 @@
     margin-left: 18.75%;
     height: 70%;
     align-self: center;
+  }
+
+  .pro-content {
+    margin-left: 53px;
   }
 </style>
