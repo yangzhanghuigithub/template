@@ -13,7 +13,22 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  config.data = config.params
+  if (this.$store.getters.apiEncrypt){
+    //获取前端RSA公钥密码、AES的key，并放到window
+    let genKeyPair = this.$rsa.genKeyPair();
+    this.$store.getters.jsPublicKey.commit(genKeyPair.publicKey);
+    this.$store.getters.jsPrivateKey.commit(genKeyPair.privateKey);
+    //发送请求之前随机获取AES的key
+    let aesKey = this.$aes.genKey();
+    let data = {
+      data: this.$aes.encrypt(config.params, aesKey), //AES加密后的数据
+      aesKey: this.$rsa.encrypt(aesKey, this.$store.getters.jsPublicKey), //后端RSA公钥加密后的AES的key
+      publicKey: this.$store.getters.jsPublicKey //前端公钥
+    };
+    config.data = data;
+  }else{
+    config.data = config.params
+  }
   config.headers['Content-Type'] = 'application/json'
   if (getToken()) {
     config.headers['LRHEALTH-AUTHORIZATION-TOKEN'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
@@ -53,7 +68,10 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
-      return response.data
+      if(this.$store.getters.apiEncrypt){
+        return this.$aes.decrypt(response.data, this.$rsa.decrypt(result.data.aesKey, this.$store.getters.jsPrivateKey));
+      }
+      return response.data.resultData;
     }
   },error => {
     console.log('err' + error)// for debug
