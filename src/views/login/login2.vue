@@ -45,28 +45,16 @@
         this.$forceUpdate();
       },
       toLogin() {
-        let b = this.$aes.encrypt("11111", "4344352345")
-        console.log(b)
-        // let c = this.$rsa.encrypt("11111", "4r34rwqerwerf");
-        // console.log(c)
-
-
-        //普通字符串
-        let text = "huanzi.qch@qq.com:欢子";
-
-//秘钥对
-        let keyPair = this.$rsa.genKeyPair();
-//公钥加密
-        let ciphertext = this.$rsa.encrypt(text,keyPair.publicKey);
-//私钥解密
-        let plaintext = this.$rsa.decrypt(ciphertext,keyPair.privateKey);
-
-
-        console.log("秘钥：");console.log(keyPair.privateKey);
-        console.log("公钥：" + keyPair.publicKey);
-        console.log("加密前：" + text);
-        console.log("公钥加密后：" + ciphertext);
-        console.log("解密后：" + plaintext);
+        this.$api.login(this.user).then((data) => {
+          this.$auth.setToken(data.resultData.userToken)
+          this.$store.commit("SET_USER", data.resultData.userId);
+          this.$router.push("/")
+          Message({
+            message: data.resultDesc,
+            type: 'success',
+            duration: 3 * 1000
+          })
+        });
       },
       removeToken() {
         this.$auth.removeToken()
