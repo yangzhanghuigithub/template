@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '../views/login/login'
+import login from '../views/login/login2'
 import regist from '../views/login/regist'
 import reset from '../views/login/reset'
 import index from '../components/draggable'
