@@ -1,3 +1,4 @@
+import {SET_JSPUBLICKEY, SET_JSPRIVATEKEY} from "../store/store-type";
 import { Message, MessageBox } from 'element-ui'
 import { getToken } from './auth'
 import merge from 'lodash/merge'
@@ -16,8 +17,8 @@ service.interceptors.request.use(config => {
   if (this.$store.getters.apiEncrypt){
     //获取前端RSA公钥密码、AES的key，并放到window
     let genKeyPair = this.$rsa.genKeyPair();
-    this.$store.getters.jsPublicKey.commit(genKeyPair.publicKey);
-    this.$store.getters.jsPrivateKey.commit(genKeyPair.privateKey);
+    this.$store.commit(SET_JSPUBLICKEY, genKeyPair.publicKey);
+    this.$store.commit(SET_JSPRIVATEKEY, genKeyPair.privateKey);
     //发送请求之前随机获取AES的key
     let aesKey = this.$aes.genKey();
     let data = {
