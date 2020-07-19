@@ -13,6 +13,7 @@ import router from './router';
 import iviewArea from 'iview-area';
 import ElementUI from 'element-ui';
 import 'iview/dist/styles/iview.css';
+import type from './store/store-type';
 import '@/element-ui-theme/style.css';
 import aesUtil from "./utils/AesUtil";
 import rsaUtil from "./utils/RsaUtil";
@@ -28,6 +29,7 @@ Vue.use(cascaderMulti);
 Vue.config.productionTip = false
 
 Vue.prototype.$api = api;
+Vue.prototype.$type = type;
 Vue.prototype.$aes = aesUtil;
 Vue.prototype.$rsa = rsaUtil;
 Vue.prototype.$auth = auth;

@@ -387,5 +387,13 @@ export const asyncRouterMap = [
 ]
 
 export default new Router({
-  routes: constantRouterMap
+  // mode: 'history',
+  routes: constantRouterMap,
+  // scrollBehavior(to, from, savedPosition){
+  //   if(savedPosition) {
+  //     return savedPosition;
+  //   }else {
+  //     return {x: 0, y: 0}
+  //   }
+  // }
 })

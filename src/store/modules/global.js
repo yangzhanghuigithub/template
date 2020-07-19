@@ -1,4 +1,3 @@
-import {SET_JSPUBLICKEY, SET_JSPRIVATEKEY} from "../store-type";
 
 const global = {
   state: {
@@ -21,10 +20,10 @@ const global = {
   },
 
   mutations: {
-    [SET_JSPUBLICKEY] (state, jsPublicKey){
+    [this.$type.SET_JSPUBLICKEY] (state, jsPublicKey){
       state.jsPublicKey = jsPublicKey;
     },
-    [SET_JSPRIVATEKEY] (state, jsPrivateKey){
+    [this.$type.SET_JSPRIVATEKEY] (state, jsPrivateKey){
       state.jsPrivateKey = jsPrivateKey;
     }
   }
