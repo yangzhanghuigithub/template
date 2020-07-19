@@ -323,7 +323,8 @@
 <script>
 
   import galf from '../../components/flag/galf';
-  import {Message} from "element-ui";
+  import {Message, MessageBox} from "element-ui";
+  import store from "../../store";
 
   export default {
     name: "addProject",
@@ -352,6 +353,7 @@
         fileUploadUrl: process.env.BASE_API + '/base/file/upload',
         userToken: {'LRHEALTH-AUTHORIZATION-TOKEN': this.$auth.getToken()},
         dateValue: '',
+        inserted: false,
         pickerOptions: {
           shortcuts: [{
             text: '最近一周',
@@ -438,6 +440,7 @@
         }
       },
       saveProj(i, j){
+        this.inserted = true;
         // this.project.startDate = this.dateValue[0];
         // this.project.endDate = this.dateValue[1];
         // this.$api.saveProject(this.project).then((data) => {
@@ -474,6 +477,17 @@
     },
     components: {
       galf
+    },
+    beforeRouteLeave(to, from, next){
+      if (!this.inserted) {
+        MessageBox.confirm('页面内容还未保存,是否确认离开?', '确认离开', {
+          confirmButtonText: '确认离开',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          next();
+        })
+      }
     }
   }
 </script>
