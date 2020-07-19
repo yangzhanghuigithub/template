@@ -12,6 +12,9 @@ const getters = {
   userTokenKey: state => state.global.userTokenKey,
   defaultProjIcon: state => state.global.defaultProjIcon,
   adminUserKey: state => state.global.adminUserKey,
-  questionNum: state => state.global.questionNum
+  questionNum: state => state.global.questionNum,
+  apiEncrypt: state => stage.global.apiEncrypt,
+  jsPublicKey: state => state.global.jsPublicKey,
+  jsPrivateKey: state => state.global.jsPrivateKey
 }
 export default getters

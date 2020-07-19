@@ -9,7 +9,13 @@ const global = {
     //默认项目图标
     defaultProjIcon: 'http://yzh:9080/lrhealth/u3201.png',
     //每个crf可以包含的题组数
-    questionNum: 5
+    questionNum: 5,
+    //是否开始API加密
+    apiEncrypt: false,
+    // 前台公钥
+    jsPublicKey: '',
+    //前台私钥
+    jsPrivateKey: ''
   },
 }
 
