@@ -1,4 +1,4 @@
-
+import {SET_JSPUBLICKEY, SET_JSPRIVATEKEY} from '../store-type';
 const global = {
   state: {
     //超级管理员用户主键
@@ -20,10 +20,10 @@ const global = {
   },
 
   mutations: {
-    [this.$type.SET_JSPUBLICKEY] (state, jsPublicKey){
+    [SET_JSPUBLICKEY] (state, jsPublicKey){
       state.jsPublicKey = jsPublicKey;
     },
-    [this.$type.SET_JSPRIVATEKEY] (state, jsPrivateKey){
+    [SET_JSPRIVATEKEY] (state, jsPrivateKey){
       state.jsPrivateKey = jsPrivateKey;
     }
   }

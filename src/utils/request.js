@@ -1,3 +1,4 @@
+import {SET_JSPUBLICKEY, SET_JSPRIVATEKEY} from '../store/store-type';
 import { Message, MessageBox } from 'element-ui'
 import { getToken } from './auth'
 import merge from 'lodash/merge'
@@ -9,21 +10,22 @@ import qs from 'qs'
 const service = axios.create({
   baseURL: process.env.BASE_API, // api的base_url
   timeout: 15000, // 请求超时时间
+  withCredentials: true
 })
 
 // request拦截器
 service.interceptors.request.use(config => {
-  if (this.$store.getters.apiEncrypt){
+  if (store.getters.apiEncrypt){
     //获取前端RSA公钥密码、AES的key，并放到window
     let genKeyPair = this.$rsa.genKeyPair();
-    this.$store.commit(this.$type.SET_JSPUBLICKEY, genKeyPair.publicKey);
-    this.$store.commit(this.$type.SET_JSPRIVATEKEY, genKeyPair.privateKey);
+    store.commit(SET_JSPUBLICKEY, genKeyPair.publicKey);
+    store.commit(SET_JSPRIVATEKEY, genKeyPair.privateKey);
     //发送请求之前随机获取AES的key
     let aesKey = this.$aes.genKey();
     let data = {
       data: this.$aes.encrypt(config.params, aesKey), //AES加密后的数据
-      aesKey: this.$rsa.encrypt(aesKey, this.$store.getters.jsPublicKey), //后端RSA公钥加密后的AES的key
-      publicKey: this.$store.getters.jsPublicKey //前端公钥
+      aesKey: this.$rsa.encrypt(aesKey, store.getters.jsPublicKey), //后端RSA公钥加密后的AES的key
+      publicKey: store.getters.jsPublicKey //前端公钥
     };
     config.data = data;
   }else{
@@ -68,10 +70,10 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
-      if(this.$store.getters.apiEncrypt){
-        return this.$aes.decrypt(response.data, this.$rsa.decrypt(result.data.aesKey, this.$store.getters.jsPrivateKey));
+      if(store.getters.apiEncrypt){
+        return this.$aes.decrypt(response.data, this.$rsa.decrypt(result.data.aesKey, store.getters.jsPrivateKey));
       }
-      return response.data.resultData;
+      return response.data;
     }
   },error => {
     console.log('err' + error)// for debug

@@ -13,7 +13,7 @@ const getters = {
   defaultProjIcon: state => state.global.defaultProjIcon,
   adminUserKey: state => state.global.adminUserKey,
   questionNum: state => state.global.questionNum,
-  apiEncrypt: state => stage.global.apiEncrypt,
+  apiEncrypt: state => state.global.apiEncrypt,
   jsPublicKey: state => state.global.jsPublicKey,
   jsPrivateKey: state => state.global.jsPrivateKey
 }

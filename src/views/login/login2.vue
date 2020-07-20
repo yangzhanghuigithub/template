@@ -25,7 +25,7 @@
     name: "login",
     data() {
       return {
-        user: {}
+        user: {rememberMe: true}
       }
     },
     created() {

@@ -1,6 +1,6 @@
 <template>
   <div class="reg-title">
-    <img class="regi-logo" :class="{'pro-content': content}" src="../../static/img/logo.png" style="border: none"/>
+    <img class="regi-logo" :class="{'pro-content': content}" src="../../static/img/logo.png" style="outline: none !important;"/>
   </div>
 </template>
 

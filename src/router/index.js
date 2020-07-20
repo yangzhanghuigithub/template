@@ -27,6 +27,10 @@ export const constantRouterMap = [
     name: 'reset',
     component: reset
   },{
+    path: '/drag',
+    name: 'drag',
+    component: index
+  },{
     path: '/render',
     name: 'render',
     component: render

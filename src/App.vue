@@ -19,11 +19,17 @@
   .mr5 {
     margin-right: 5px;
   }
+  .mr10 {
+    margin-right: 10px !important;
+  }
   .ml5 {
     margin-left: 5px;
   }
   .ml10 {
     margin-left: 10px;
+  }
+  .pl10 {
+    padding-left: 10px;
   }
   .mt20 {
     margin-top: 20px;
@@ -80,6 +86,9 @@
   .bold {
     font-weight: bold;
   }
+  .size8 {
+    font-size: 8px;
+   }
   .size12 {
     font-size: 12px;
    }
