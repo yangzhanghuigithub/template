@@ -42,8 +42,8 @@
                   <transition-group class="form-list-group form-first-group form-second-group" type="transition"
                                     :name="'flip-list'" tag="div" style="margin-bottom: 200px;">
                     <span class="subj-box" @click="clickEle(ele.type)" v-for="(ele, ind) in subj_list" :key="ind">
-                      <i class="subj-icon iconfont iconliebiao2">{{ele.title}}</i><i
-                      class="iconfont iconlajitongshanchu"></i>
+                      <i class="subj-icon iconfont iconliebiao2 ml10 color666 size14"><span class="ml10 color666 size16">{{ele.title}}</span></i><i
+                      class="iconfont iconlajitongshanchu mr10 color555"></i>
                     </span>
                   </transition-group>
                 </draggable>
@@ -55,21 +55,25 @@
         </Tabs>
       </span>
         <i-col span="18" class="sortable_item" style="margin-left: -1px;width: 78%;float: right;background-color: white">
-          <divb class="crf-edit-head mt20">
+          <div class="crf-edit-head mt20">
             <div class="size20 bold">CRF模板名称示例十二个字以内??<i class="iconfont iconbianji colorff7 ml10"></i></div>
             <div class="size14 mt10 color666">备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注</div>
-          </divb>
+          </div>
           <Form ref="formValidate" class="b-a" :label-width="100" :model="formData" @submit.native.prevent>
             <!--          <Alert style="margin: 15px 15px 0;" type="warning" show-icon>未绑定数据字典控件无效</Alert>-->
             <draggable :list="sortable_item1" :options="dragOptions4" @end="dragEnd()">
               <transition-group class="form-list-group choosen-item" type="transition" :name="'flip-list'" tag="div">
                 <div v-for="(ele, ind) in sortable_item1" :key="ind"
                      style="margin-top: 10px;border-radius: 8px;" :class="{'hasItem' : ele.list.length > 0}">
-                <span style="font-weight: bold;margin-left: 38px" v-show="ele.list.length > 0">
+                <span style="font-weight: bold;margin-left: 48px; display: flex; flex-direction: row; justify-content: space-between" v-show="ele.list.length > 0">
                   <span>{{ele.name}}</span>
+                  <span class="item-icon mr5">
+                    <i class="iconfont iconbianji color666 size8"></i>
+                    <i class="iconfont iconlajitongshanchu size8 color666 mr10 1111" @click="ele.list.splice(0, ele.list.length)"></i>
+                  </span>
                 </span>
                   <div style="display: flex;align-items: center;">
-                    <i class="iconfont iconliebiao2 handle" v-show="ele.list.length > 0" style="font-size: 30px;color: gray;cursor: move;margin-bottom: 22px;"></i>
+                    <i class="iconfont iconliebiao2 handle" v-show="ele.list.length > 0" style="font-size: 30px;color: gray;cursor: move;margin-bottom: 22px;margin-left: 10px"></i>
                     <draggable class="dragbox"  :list="ele.list" :options="dragOptions2" @end="dragEnd()">
                       <transition-group class="form-list-group" type="transition" :name="'flip-list'" tag="div">
                         <renders @handleRemoveEle="removeEle(ind, index)" @handleConfEle="confEle(ind, index)" @changeVisibility="changeVisibility"
@@ -587,110 +591,109 @@
     margin-top: 2px !important;
 }
 
-.search-box {
-margin-left: 8%;
-color: gray;
-}
+  .search-box {
+    margin-left: 8%;
+    color: gray;
+  }
 
-.search-input {
-background: transparent;
-border: none;
-outline: medium;
-border-bottom: 1px solid gray;
-width: 78%;
-margin-left: 4%;
-margin-bottom: 6px;
-font-size: 20px;
-}
+  .search-input {
+    background: transparent;
+    border: none;
+    outline: medium;
+    border-bottom: 1px solid gray;
+    width: 78%;
+    margin-left: 4%;
+    margin-bottom: 6px;
+    font-size: 20px;
+  }
 
-.subj-box {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-font-size: 14px;
-width: 100%;
-height: 30px;
-line-height: 30px;
-cursor: move;
-border-bottom: 1px solid darkgray;
-margin-top: 10px;
-}
+  .subj-box {
+    background:rgba(250,250,250,1);
+    border:1px solid rgba(221,221,221,1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-left: 2.5%;
+    width: 95%;
+    height: 40px;
+    line-height: 30px;
+    cursor: move;
+    margin-top: 10px;
+  }
 
-.subj-icon {
-font-size: 18px;
-margin-right: 10px;
-}
+  .subj-icon {
+    font-size: 14px;
+    margin-right: 10px;
+  }
 
-.compo {
-margin-left: 20px;
-height: 50px;
-line-height: 50px;
-}
+  .compo {
+    margin-left: 20px;
+    height: 50px;
+    line-height: 50px;
+  }
 
-.choose-icon {
-margin-right: 6px;
-font-size: 10px;
-}
+  .choose-icon {
+    margin-right: 6px;
+    font-size: 10px;
+  }
 
-.form-first-group {
-display: flex;
-padding-bottom: 0px !important;
-padding-top: 0px !important;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: space-between;
-}
+  .form-first-group {
+    display: flex;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-.form-second-group {
-border-top: 1px solid darkgray;
-}
+  .choose-box {
+    cursor: move;
+    width: 30%;
+    background:rgba(250,250,250,1);
+    border:1px solid rgba(221,221,221,1);
+    border-radius:17px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-.choose-box {
-cursor: move;
-width: 30%;
-background:rgba(250,250,250,1);
-border:1px solid rgba(221,221,221,1);
-border-radius:17px;
-height: 34px;
-line-height: 34px;
-text-align: center;
-margin-bottom: 20px;
-}
+  .inline {
+    display: inline-block;
+  }
 
-.inline {
-display: inline-block;
-}
+  .m-l-lg {
+    margin-left: 30px
+  }
 
-.m-l-lg {
-margin-left: 30px
-}
+  .wrapper {
+    padding: 15px
+  }
 
-.wrapper {
-padding: 15px
-}
+  .inline-block {
+    display: inline-block;
+  }
 
-.inline-block {
-display: inline-block;
-}
+  .padder-sm {
+    padding-right: 10px;
+    padding-left: 10px
+  }
 
-.padder-sm {
-padding-right: 10px;
-padding-left: 10px
-}
+  .b-a {
+  /*border: 1px solid #ccc;*/
+  }
 
-.b-a {
-/*border: 1px solid #ccc;*/
-}
+  .ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+  }
 
-.ghost {
-opacity: 0.5;
-background: #c8ebfb;
-}
-
-.form-list-group {
-min-height: 65px;
-padding: 5px 10px 10px 10px;
-}
+  .form-list-group {
+    min-height: 65px;
+    padding: 5px 10px 10px 10px;
+  }
 
 /* 设置items下所有鼠标样式为 move */
 
